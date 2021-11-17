@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">Big QUIZ</string>
+    <string name="your_name">User Name:</string>
+    <string name="your_score_main">User Best Score:</string>
+    <string name="your_profile">Profile</string>
+    <string name="main_welcome">Welcome to the game ! \nWhat\'s your name?</string>
+    <string name="type_your_name">Type your name here...</string>
+    <string name="button_restartProfile">Restart Profile</string>
+    <string name="settings">settings</string>
+    <string name="main_welcome_name">Welcome</string>
+    <string name="main_welcome_score">\nYour last score is</string>
+    <string name="final_well_done">Well Done!</string>
+    <string name="final_score">Your score is</string>
+    <string name="correct_message">Correct!</string>
+    <string name="incorrect_message">Incorrect!</string>
+    <string name="go">Let\'s play!</string>
+
+    <string name="history_1_Q">	Who was the first president of the USA?</string>
+        <string name="history_1_A">	George Washington</string>
+        <string name="history_1_B">	John Adams</string>
+        <string name="history_1_C">Donald Trump</string>
+        <string name="history_1_D">James Madison</string>
+
+    <string name="history_2_Q">When did the first man land on the moon?</string>
+        <string name="history_2_A">1958</string>
+        <string name="history_2_B">1962</string>
+        <string name="history_2_C">1967</string>
+        <string name="history_2_D">1969</string>
+
+    <string name="history_3_Q">	How many women did Henry VIII have?</string>
+        <string name="history_3_A">7</string>
+        <string name="history_3_B">4</string>
+        <string name="history_3_C">2</string>
+        <string name="history_3_D">6</string>
+
+    <string name="history_4_Q">How many children did Queen Victoria have?</string>
+        <string name="history_4_A">4</string>
+        <string name="history_4_B">6</string>
+        <string name="history_4_C">7</string>
+        <string name="history_4_D">9</string>
+
+    <string name="history_5_Q">	When became Albania an independent country?</string>
+        <string name="history_5_A">1713</string>
+        <string name="history_5_B">1813</string>
+        <string name="history_5_C">1913</string>
+        <string name="history_5_D">2013</string>
+
+    <string name="history_6_Q">	Which king of French was called \"Saint Louis\"?</string>
+        <string name="history_6_A">Louis 7</string>
+        <string name="history_6_B">Louis 9</string>
+        <string name="history_6_C">Louis 13</string>
+        <string name="history_6_D">Louis 14</string>
+</resources>
