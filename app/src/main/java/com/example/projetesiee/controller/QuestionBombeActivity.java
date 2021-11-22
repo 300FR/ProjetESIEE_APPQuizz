@@ -1,6 +1,7 @@
 package com.example.projetesiee.controller;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -24,6 +25,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.projetesiee.R;
 import com.example.projetesiee.model.AnimationClass;
+import com.example.projetesiee.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +47,7 @@ public class QuestionBombeActivity extends AppCompatActivity {
     private int currentFrame=0;
 
     private int Time =30;
+    private User user;
 
     float x=0,y=0;
 
@@ -56,6 +59,10 @@ public class QuestionBombeActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_question_bombe);
+
+        Intent intent = getIntent();
+        user= new User();
+        user.setIntent(intent);
 
         this.animationClass = new AnimationClass();
 
