@@ -103,7 +103,9 @@ public class MainActivity extends AppCompatActivity {
                 mUser.setFirstName(name);
 
                 //startActivityForResult(new Intent(MainActivity.this, GameActivity.class),REQUEST_CODE_GAME_ACTIVITY);
-                startActivity(new Intent(MainActivity.this,QuestionBombeActivity.class));
+                //startActivity(new Intent(MainActivity.this,QuestionBombeActivity.class));
+                //startActivity(new Intent(MainActivity.this,QuestionCadenasActivity.class));
+                startActivity(new Intent(MainActivity.this,QuestionMapsActivity.class));
             }
         });
 
