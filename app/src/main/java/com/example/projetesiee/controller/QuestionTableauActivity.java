@@ -114,11 +114,14 @@ public class QuestionTableauActivity extends AppCompatActivity {
                             @Override public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                                 switch (newState) {
                                     case SCROLL_STATE_IDLE:
-                                        if (cadenas.setCode(index,pos%numbers.size())){
+                                        if (cadenas.setCode(index, pos % numbers.size())) {
                                             Toast.makeText(QuestionTableauActivity.this, "fini!", Toast.LENGTH_SHORT).show();
                                         }
-                                        recyclerView.removeOnScrollListener(this); break;
-                                }   }
+                                        recyclerView.removeOnScrollListener(this);
+                                        break;
+                                    default: break;
+                                }
+                            }
                         });
                         return true;
                     }
