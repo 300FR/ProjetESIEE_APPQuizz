@@ -80,7 +80,7 @@ public class QuestionTableauActivity extends AppCompatActivity {
             final int index=i;
             LinearLayoutManager layoutManager = new LinearLayoutManager(this);
             FrameLayout.LayoutParams layoutParams= new FrameLayout.LayoutParams( ratioWidthDP,ratioHeightDP);
-            TableRow.LayoutParams layoutParamsParent= new TableRow.LayoutParams(ratioWidthDP+50,ratioHeightDP+50);
+            TableRow.LayoutParams layoutParamsParent= new TableRow.LayoutParams(ratioWidthDP+pxToDp(55),ratioHeightDP+pxToDp(55));
 
             RecyclerView.SmoothScroller smoothScroller = new LinearSmoothScroller(this) {
                 @Override protected int getVerticalSnapPreference() {
@@ -135,7 +135,7 @@ public class QuestionTableauActivity extends AppCompatActivity {
 
 
     private Bitmap[] setBitmaps(){
-        Bitmap spriteSheet= BitmapFactory.decodeResource(getResources(), R.drawable.louis_xiv);
+        Bitmap spriteSheet= BitmapFactory.decodeResource(getResources(), R.drawable.joconde);
         int NBCol =4;
         int NBLine =4;
         Bitmap[] bitmaps= new Bitmap[NBCol*NBLine];
