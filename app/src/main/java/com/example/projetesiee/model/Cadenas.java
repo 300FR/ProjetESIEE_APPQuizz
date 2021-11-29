@@ -1,5 +1,7 @@
 package com.example.projetesiee.model;
 
+import android.os.Debug;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.projetesiee.R;
@@ -19,6 +21,7 @@ public class Cadenas {
     }
 
     public Boolean setCode(int position,int value){
+        Log.d("lm",""+position+" : "+value);
         this.actualCode[position]=value;
         return isCodeRight();
     }

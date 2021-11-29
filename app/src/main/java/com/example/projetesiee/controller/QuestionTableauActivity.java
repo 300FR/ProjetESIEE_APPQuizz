@@ -9,10 +9,13 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.MotionEvent;
+import android.view.SurfaceView;
+import android.view.View;
 import android.view.ViewParent;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TableRow;
@@ -78,9 +81,14 @@ public class QuestionTableauActivity extends AppCompatActivity {
 
         for (int i=0;i<recyclerViews.length;i++) {
             final int index=i;
-            LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(this){
+                @Override
+                public int findLastCompletelyVisibleItemPosition() {
+                    return super.findLastCompletelyVisibleItemPosition();
+                }
+            };
             FrameLayout.LayoutParams layoutParams= new FrameLayout.LayoutParams( ratioWidthDP,ratioHeightDP);
-            TableRow.LayoutParams layoutParamsParent= new TableRow.LayoutParams(ratioWidthDP+pxToDp(55),ratioHeightDP+pxToDp(55));
+            TableRow.LayoutParams layoutParamsParent= new TableRow.LayoutParams(ratioWidthDP+pxToDp(65),ratioHeightDP+pxToDp(65));
 
             RecyclerView.SmoothScroller smoothScroller = new LinearSmoothScroller(this) {
                 @Override protected int getVerticalSnapPreference() {
@@ -96,8 +104,7 @@ public class QuestionTableauActivity extends AppCompatActivity {
             recyclerView.setOnTouchListener((v, event) -> {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_UP: {
-                        int pos = layoutManager.findLastCompletelyVisibleItemPosition();
-                        if (pos==-1) return false;
+                        int pos = layoutManager.findLastVisibleItemPosition();
                         runOnUiThread(new Runnable() { @Override public void run() {
                             smoothScroller.setTargetPosition(pos);
                             layoutManager.startSmoothScroll(smoothScroller);
@@ -123,6 +130,8 @@ public class QuestionTableauActivity extends AppCompatActivity {
             ViewParent parent = recyclerView.getParent();
             if (parent!=null && parent instanceof ScrollView){
                 ((ScrollView) parent).setLayoutParams(layoutParamsParent);
+            }else if (parent!=null && parent instanceof FrameLayout){
+                ((FrameLayout) parent).setLayoutParams(layoutParamsParent);
             }
             recyclerView.setLayoutParams(layoutParams);
             recyclerView.setAdapter(adapt);
