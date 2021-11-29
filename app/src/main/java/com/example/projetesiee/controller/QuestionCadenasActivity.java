@@ -50,7 +50,7 @@ public class QuestionCadenasActivity extends AppCompatActivity{
 
         CadenasRecycleAdapter adapt = new CadenasRecycleAdapter(numbers);
 
-        for (int i=0;i<4;i++) {
+        for (int i=0;i<recyclerViews.length;i++) {
             final int index=i;
             LinearLayoutManager layout = new LinearLayoutManager(this){
 

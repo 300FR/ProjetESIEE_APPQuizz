@@ -22,6 +22,10 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="false" />
         <activity
+            android:name=".controller.QuestionTableauActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:exported="false" />
+        <activity
             android:name=".controller.QuestionMapsActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="false" />

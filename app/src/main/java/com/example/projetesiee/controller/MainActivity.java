@@ -1,6 +1,5 @@
 package com.example.projetesiee.controller;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,7 +7,6 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -21,7 +19,6 @@ import android.widget.TextView;
 import com.example.projetesiee.R;
 import com.example.projetesiee.model.User;
 
-import java.util.Arrays;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
@@ -107,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 //mUser.setIntent(intent);
                 //startActivity(intent);
                 //startActivity(new Intent(MainActivity.this,QuestionCadenasActivity.class));
-                startActivity(new Intent(MainActivity.this,QuestionBombeActivity.class));
+                startActivity(new Intent(MainActivity.this, QuestionTableauActivity.class));
             }
         });
 

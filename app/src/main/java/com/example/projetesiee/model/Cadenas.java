@@ -1,5 +1,9 @@
 package com.example.projetesiee.model;
 
+import android.widget.Toast;
+
+import com.example.projetesiee.R;
+
 import java.util.Random;
 
 public class Cadenas {
@@ -24,7 +28,7 @@ public class Cadenas {
         this.startingPosition=new int[codeSecret.length];
         Random rand = new Random();
         for (int i=0;i<codeSecret.length;i++){
-            this.startingPosition[i]=rand.nextInt(10);
+            this.startingPosition[i]=rand.nextInt(codeSecret.length);
         }
         this.actualCode=this.startingPosition;
     }

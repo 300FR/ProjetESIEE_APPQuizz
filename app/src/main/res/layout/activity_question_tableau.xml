@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="179dp">
+
+        <ImageView
+            android:id="@+id/imageView13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/fond_bois" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:shrinkColumns="0,1,2,3">
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ScrollView
+                    android:layout_width="153dp"
+                    android:layout_height="109dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="-10dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/stones_combinaison_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+                </ScrollView>
+
+                <ScrollView
+                    android:layout_width="153dp"
+                    android:layout_height="109dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="0dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/stones_combinaison_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+                </ScrollView>
+
+                <ScrollView
+                    android:layout_width="153dp"
+                    android:layout_height="109dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="0dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/stones_combinaison_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+                </ScrollView>
+
+                <ScrollView
+                    android:layout_width="153dp"
+                    android:layout_height="109dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="0dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/stones_combinaison_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+                </ScrollView>
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ScrollView
+                    android:layout_width="153dp"
+                    android:layout_height="109dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="0dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/stones_combinaison_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+                </ScrollView>
+
+                <ScrollView
+                    android:layout_width="153dp"
+                    android:layout_height="109dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="-20dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/stones_combinaison_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+                </ScrollView>
+
+                <ScrollView
+                    android:layout_width="153dp"
+                    android:layout_height="109dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="0dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/stones_combinaison_7"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+                </ScrollView>
+
+                <ScrollView
+                    android:layout_width="153dp"
+                    android:layout_height="109dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="0dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/stones_combinaison_8"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+                </ScrollView>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ScrollView
+                    android:layout_width="153dp"
+                    android:layout_height="109dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="0dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/stones_combinaison_9"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+                </ScrollView>
+
+                <ScrollView
+                    android:layout_width="153dp"
+                    android:layout_height="109dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="0dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/stones_combinaison_10"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+                </ScrollView>
+
+                <ScrollView
+                    android:layout_width="153dp"
+                    android:layout_height="109dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="0dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/stones_combinaison_11"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+                </ScrollView>
+
+                <ScrollView
+                    android:layout_width="153dp"
+                    android:layout_height="109dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="0dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/stones_combinaison_12"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+                </ScrollView>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ScrollView
+                    android:layout_width="153dp"
+                    android:layout_height="109dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="0dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/stones_combinaison_13"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+                </ScrollView>
+
+                <ScrollView
+                    android:layout_width="153dp"
+                    android:layout_height="109dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="0dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/stones_combinaison_14"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+                </ScrollView>
+
+                <ScrollView
+                    android:layout_width="153dp"
+                    android:layout_height="109dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="0dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/stones_combinaison_15"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+                </ScrollView>
+
+                <ScrollView
+                    android:layout_width="153dp"
+                    android:layout_height="109dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="0dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/stones_combinaison_16"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+                </ScrollView>
+            </TableRow>
+
+        </TableLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.example.projetesiee.model;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projetesiee.R;
-import com.example.projetesiee.controller.QuestionCadenasActivity;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 /*
@@ -27,7 +25,7 @@ public class CadenasRecycleAdapter extends RecyclerView.Adapter<CadenasRecycleAd
 
         public ViewHolder(View view) {
             super(view);
-            textView = (TextView) view.findViewById(R.id.textView);
+            textView = (TextView) view.findViewById(R.id.cadenas_text_view);
         }
 
         public TextView getTextView() {
@@ -53,7 +51,6 @@ public class CadenasRecycleAdapter extends RecyclerView.Adapter<CadenasRecycleAd
         int index=position % localDataSet.size();
         holder.getTextView().setText(localDataSet.get(index));
     }
-
 
     @Override
     public int getItemCount() {

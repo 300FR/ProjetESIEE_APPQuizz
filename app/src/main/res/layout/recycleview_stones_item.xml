@@ -12,12 +12,12 @@
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp">
 
-        <TextView
-            android:id="@+id/cadenas_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/stone_image2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
-            android:text="TextView"
-            android:textSize="34sp" />
+            app:srcCompat="@drawable/bomb" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
