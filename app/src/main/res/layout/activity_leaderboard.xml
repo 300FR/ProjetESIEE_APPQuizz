@@ -18,26 +18,33 @@
         android:orientation="horizontal">
 
         <LinearLayout
+            android:id="@+id/leaderboard_verticallayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_vertical"
             android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/imageView3"
                 android:layout_width="match_parent"
-                android:layout_height="169dp"
+                android:layout_height="139dp"
                 app:srcCompat="@drawable/leaderboard" />
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="263dp">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/leaderboard_recycleview"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </FrameLayout>
+
+            <ImageButton
+                android:id="@+id/button_leaderboard_back"
+                android:layout_width="98dp"
+                android:layout_height="119dp"
+                android:backgroundTint="#00FFFFFF"
+                app:srcCompat="@drawable/bouton_gauche" />
 
         </LinearLayout>
     </LinearLayout>

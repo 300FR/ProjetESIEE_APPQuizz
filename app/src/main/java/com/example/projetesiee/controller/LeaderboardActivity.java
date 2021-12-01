@@ -1,8 +1,13 @@
 package com.example.projetesiee.controller;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +22,8 @@ import java.util.ArrayList;
 public class LeaderboardActivity extends AppCompatActivity {
     
     private RecyclerView recyclerView;
+    private ImageButton button_back;
+    private LinearLayout linearLayout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,8 +33,19 @@ public class LeaderboardActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_leaderboard);
 
+        this.recyclerView=findViewById(R.id.leaderboard_recycleview);
+        this.button_back=findViewById(R.id.button_leaderboard_back);
+        this.linearLayout=findViewById(R.id.leaderboard_verticallayout);
+
+        this.button_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LeaderboardActivity.this, MainActivity.class));
+            }
+        });
+
         ArrayList<String[]> dataSet = new  ArrayList<String[]>();
-        dataSet.add(new String[]{"1","lddùù","00:34"});
+        //dataSet.add(new String[]{"1","lddùù","00:34"});
         dataSet.add(new String[]{"2","lGddùù","00:35"});
         dataSet.add(new String[]{"3","lddGùù","00:36"});
         dataSet.add(new String[]{"4","ldGdGùù","00:37"});
@@ -40,14 +58,18 @@ public class LeaderboardActivity extends AppCompatActivity {
         dataSet.add(new String[]{"11","lddGùù","00:36"});
         dataSet.add(new String[]{"12","ldGdGùù","00:37"});
 
-
-        
-        this.recyclerView=findViewById(R.id.leaderboard_recycleview);
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         this.recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(new LeaderboardRecycleAdapter(dataSet));
         layoutManager.scrollToPosition(0);
-        
+
+        String[] tab = new String[]{"1","lddùù","00:34"};
+        View view = LayoutInflater.from(this.recyclerView.getContext())
+                .inflate(R.layout.recycleview_leaderboard_item, this.recyclerView, false);
+        LeaderboardRecycleAdapter.ViewHolder firstHolder= new LeaderboardRecycleAdapter.ViewHolder(view);
+        firstHolder.getPositionView().setText(tab[0]);
+        firstHolder.getNameView().setText(tab[1]);
+        firstHolder.getBestTimeView().setText(tab[2]);
+        this.linearLayout.addView(view,1);
     }
 }
