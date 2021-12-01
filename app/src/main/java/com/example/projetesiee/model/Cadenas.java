@@ -21,9 +21,17 @@ public class Cadenas {
     }
 
     public Boolean setCode(int position,int value){
-        Log.d("lm",""+position+" : "+value);
         this.actualCode[position]=value;
+        Log.d("lm",""+affCode());
         return isCodeRight();
+    }
+
+    public String affCode(){
+        String s="tab= [";
+        for (int i : actualCode){
+            s+=""+i+", ";
+        }
+        return s+="]";
     }
 
     public Cadenas(int[] codeSecret){

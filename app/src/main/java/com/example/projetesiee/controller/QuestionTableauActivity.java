@@ -7,6 +7,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
@@ -42,9 +43,12 @@ public class QuestionTableauActivity extends AppCompatActivity {
     private int ratioWidthDP;
     private int ratioHeightDP;
 
+    public static float DensityOfApp;
+
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -72,6 +76,9 @@ public class QuestionTableauActivity extends AppCompatActivity {
         ArrayList<Bitmap> numbers = new ArrayList<>(Arrays.asList(setBitmaps()));
         TableauRecycleAdapter adapt = new TableauRecycleAdapter(numbers);
 
+        float density = this.getResources().getDisplayMetrics().density;
+        DensityOfApp=density;
+
         int [] combinaison = new int[recyclerViews.length];
         for (int i=0;i<recyclerViews.length;i++){
             combinaison[i]=(i);
@@ -81,14 +88,9 @@ public class QuestionTableauActivity extends AppCompatActivity {
 
         for (int i=0;i<recyclerViews.length;i++) {
             final int index=i;
-            LinearLayoutManager layoutManager = new LinearLayoutManager(this){
-                @Override
-                public int findLastCompletelyVisibleItemPosition() {
-                    return super.findLastCompletelyVisibleItemPosition();
-                }
-            };
+            LinearLayoutManager layoutManager = new LinearLayoutManager(this);
             FrameLayout.LayoutParams layoutParams= new FrameLayout.LayoutParams( ratioWidthDP,ratioHeightDP);
-            TableRow.LayoutParams layoutParamsParent= new TableRow.LayoutParams(ratioWidthDP+pxToDp(65),ratioHeightDP+pxToDp(65));
+            TableRow.LayoutParams layoutParamsParent= new TableRow.LayoutParams(ratioWidthDP,ratioHeightDP);
 
             RecyclerView.SmoothScroller smoothScroller = new LinearSmoothScroller(this) {
                 @Override protected int getVerticalSnapPreference() {
@@ -104,36 +106,47 @@ public class QuestionTableauActivity extends AppCompatActivity {
             recyclerView.setOnTouchListener((v, event) -> {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_UP: {
-                        int pos = layoutManager.findLastVisibleItemPosition();
-                        runOnUiThread(new Runnable() { @Override public void run() {
-                            smoothScroller.setTargetPosition(pos);
-                            layoutManager.startSmoothScroll(smoothScroller);
-                        } });
-                        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-                            @SuppressLint("ClickableViewAccessibility")
-                            @Override public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                                switch (newState) {
-                                    case SCROLL_STATE_IDLE:
-                                        if (cadenas.setCode(index, pos % numbers.size())) {
-                                            Toast.makeText(QuestionTableauActivity.this, "fini!", Toast.LENGTH_SHORT).show();
+                        final int pos = layoutManager.findLastVisibleItemPosition();
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Log.d("lm","finalPOS = "+pos);
+                                smoothScroller.setTargetPosition(pos);
+                                layoutManager.startSmoothScroll(smoothScroller);
+                                recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                                    @SuppressLint("ClickableViewAccessibility")
+                                    @Override
+                                    public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                                        Log.d("lm","case random = "+pos);
+                                        switch (newState) {
+                                            case SCROLL_STATE_IDLE:
+                                                Log.d("lm","caseIDLE = "+pos);
+                                                if (cadenas.setCode(index, pos % numbers.size())) {
+                                                    Toast.makeText(QuestionTableauActivity.this, "fini!", Toast.LENGTH_SHORT).show();
+                                                }
+                                                recyclerView.removeOnScrollListener(this);
+                                                break;
+                                            default:
+                                                break;
                                         }
-                                        recyclerView.removeOnScrollListener(this);
-                                        break;
-                                    default: break;
-                                }
+                                    }
+                                });
                             }
                         });
+
                         return true;
                     }
+                    case MotionEvent.ACTION_DOWN:
+                        recyclerView.clearOnScrollListeners();
+                        return true;
+                    default:
+                        return false;
                 }
-                return false;
             });
 
             recyclerView.setLayoutManager(layoutManager);
             ViewParent parent = recyclerView.getParent();
-            if (parent!=null && parent instanceof ScrollView){
-                ((ScrollView) parent).setLayoutParams(layoutParamsParent);
-            }else if (parent!=null && parent instanceof FrameLayout){
+            if (parent!=null && parent instanceof FrameLayout){
                 ((FrameLayout) parent).setLayoutParams(layoutParamsParent);
             }
             recyclerView.setLayoutParams(layoutParams);
@@ -147,7 +160,7 @@ public class QuestionTableauActivity extends AppCompatActivity {
 
 
     private Bitmap[] setBitmaps(){
-        Bitmap spriteSheet= BitmapFactory.decodeResource(getResources(), R.drawable.joconde);
+        Bitmap spriteSheet= BitmapFactory.decodeResource(getResources(), R.drawable.louis_xiv);
         int NBCol =4;
         int NBLine =4;
         Bitmap[] bitmaps= new Bitmap[NBCol*NBLine];

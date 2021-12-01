@@ -28,8 +28,7 @@
         <TableLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:shrinkColumns="0,1,2,3">
+            android:gravity="center">
 
             <TableRow
                 android:layout_width="wrap_content"
@@ -38,9 +37,10 @@
                 <FrameLayout
                     android:layout_width="153dp"
                     android:layout_height="109dp"
-                    android:layout_margin="0dp">
+                    >
 
-                    <androidx.recyclerview.widget.RecyclerView android:id="@+id/stones_combinaison_1"
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/stones_combinaison_1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
@@ -50,10 +50,7 @@
                 <FrameLayout
                     android:layout_width="153dp"
                     android:layout_height="109dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_margin="0dp">
+                    >
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/stones_combinaison_2"
@@ -66,10 +63,7 @@
                 <FrameLayout
                     android:layout_width="153dp"
                     android:layout_height="109dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_margin="0dp">
+                    >
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/stones_combinaison_3"
@@ -82,10 +76,7 @@
                 <FrameLayout
                     android:layout_width="153dp"
                     android:layout_height="109dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_margin="0dp">
+                    >
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/stones_combinaison_4"
@@ -104,10 +95,7 @@
                 <FrameLayout
                     android:layout_width="153dp"
                     android:layout_height="109dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_margin="0dp">
+                    >
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/stones_combinaison_5"
@@ -120,10 +108,7 @@
                 <FrameLayout
                     android:layout_width="153dp"
                     android:layout_height="109dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_margin="-20dp">
+                    >
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/stones_combinaison_6"
@@ -136,10 +121,7 @@
                 <FrameLayout
                     android:layout_width="153dp"
                     android:layout_height="109dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_margin="0dp">
+                    >
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/stones_combinaison_7"
@@ -152,10 +134,7 @@
                 <FrameLayout
                     android:layout_width="153dp"
                     android:layout_height="109dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_margin="0dp">
+                    >
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/stones_combinaison_8"
@@ -174,10 +153,7 @@
                 <FrameLayout
                     android:layout_width="153dp"
                     android:layout_height="109dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_margin="0dp">
+                    >
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/stones_combinaison_9"
@@ -190,10 +166,7 @@
                 <FrameLayout
                     android:layout_width="153dp"
                     android:layout_height="109dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_margin="0dp">
+                    >
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/stones_combinaison_10"
@@ -206,10 +179,7 @@
                 <FrameLayout
                     android:layout_width="153dp"
                     android:layout_height="109dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_margin="0dp">
+                    >
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/stones_combinaison_11"
@@ -222,10 +192,7 @@
                 <FrameLayout
                     android:layout_width="153dp"
                     android:layout_height="109dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_margin="0dp">
+                    >
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/stones_combinaison_12"
@@ -243,10 +210,7 @@
                 <FrameLayout
                     android:layout_width="153dp"
                     android:layout_height="109dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_margin="0dp">
+                    >
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/stones_combinaison_13"
@@ -259,10 +223,7 @@
                 <FrameLayout
                     android:layout_width="153dp"
                     android:layout_height="109dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_margin="0dp">
+                    >
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/stones_combinaison_14"
@@ -275,10 +236,7 @@
                 <FrameLayout
                     android:layout_width="153dp"
                     android:layout_height="109dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_margin="0dp">
+                    >
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/stones_combinaison_15"
@@ -291,10 +249,7 @@
                 <FrameLayout
                     android:layout_width="153dp"
                     android:layout_height="109dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_margin="0dp">
+                    >
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/stones_combinaison_16"

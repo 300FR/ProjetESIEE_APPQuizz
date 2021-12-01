@@ -2,8 +2,10 @@ package com.example.projetesiee.controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,8 +19,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.projetesiee.R;
+import com.example.projetesiee.model.DBOpenHelper;
 import com.example.projetesiee.model.User;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,11 +43,13 @@ public class MainActivity extends AppCompatActivity {
     private Button mRestartButton;
     private Spinner mSpinnerLangues;
 
+    private DBOpenHelper dbOpenHelper;
+
     private final String[] langues = {"en","fr","us"};
 
     private User mUser;
 
-    @Override
+    @Override @SuppressLint("Range")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -104,7 +110,8 @@ public class MainActivity extends AppCompatActivity {
                 //mUser.setIntent(intent);
                 //startActivity(intent);
                 //startActivity(new Intent(MainActivity.this,QuestionCadenasActivity.class));
-                startActivity(new Intent(MainActivity.this, QuestionTableauActivity.class));
+                //startActivity(new Intent(MainActivity.this, QuestionTableauActivity.class));
+                startActivity(new Intent(MainActivity.this, LeaderboardActivity.class));
             }
         });
 
@@ -131,6 +138,25 @@ public class MainActivity extends AppCompatActivity {
                 mPlayButton.setEnabled(!s.toString().isEmpty());
             }
         });
+
+        dbOpenHelper = new DBOpenHelper(this);
+        ArrayList array_list = dbOpenHelper.getAllCotacts();
+        ArrayAdapter arrayAdapter=new ArrayAdapter(this,android.R.layout.simple_list_item_1, array_list);
+
+        dbOpenHelper.insertContact("coco","06","lol@","4bis","paris");
+
+        Cursor rs = dbOpenHelper.getData(0);
+        rs.moveToFirst();
+        
+        String nam = rs.getString(rs.getColumnIndex(DBOpenHelper.CONTACTS_COLUMN_NAME));
+        String phon = rs.getString(rs.getColumnIndex(DBOpenHelper.CONTACTS_COLUMN_PHONE));
+        String emai = rs.getString(rs.getColumnIndex(DBOpenHelper.CONTACTS_COLUMN_EMAIL));
+        String stree = rs.getString(rs.getColumnIndex(DBOpenHelper.CONTACTS_COLUMN_STREET));
+        String plac = rs.getString(rs.getColumnIndex(DBOpenHelper.CONTACTS_COLUMN_CITY));
+
+        if (!rs.isClosed())  {
+            rs.close();
+        }
     }
 
     @Override

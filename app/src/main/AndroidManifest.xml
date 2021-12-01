@@ -31,6 +31,11 @@
             android:exported="false" />
         <activity
             android:name=".controller.GameActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:exported="false" />
+        <activity
+            android:name=".controller.LeaderboardActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".controller.MainActivity"
