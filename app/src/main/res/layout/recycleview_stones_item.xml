@@ -14,6 +14,11 @@
             android:id="@+id/stone_image2"
             android:layout_width="80dp"
             android:layout_height="100dp"
+            android:maxWidth="200dp"
+            android:layout_margin="0dp"
+            android:maxHeight="280dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
             app:srcCompat="@drawable/bomb" />
 
     </LinearLayout>

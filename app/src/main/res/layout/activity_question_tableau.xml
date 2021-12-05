@@ -5,25 +5,84 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <ImageView
+        android:id="@+id/imageView13"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteY="179dp">
-
-        <ImageView
-            android:id="@+id/imageView13"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/fond_bois" />
-    </LinearLayout>
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/fond_bois" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/minuteur_layout"
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:layout_margin="4dp"
+            android:gravity="right"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="55dp"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/fond_noir" />
+
+                <TextView
+                    android:id="@+id/minuteur_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="00:00"
+                    android:textColor="#FFFFFF" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="260dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/question_tableau"
+                android:textSize="24sp" />
+
+            <ImageView
+                android:id="@+id/image_preview_tableau"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:adjustViewBounds="true"
+                android:maxWidth="100dp"
+                android:maxHeight="120dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/ic_launcher_foreground" />
+        </LinearLayout>
 
         <TableLayout
             android:layout_width="wrap_content"
@@ -36,52 +95,52 @@
 
                 <FrameLayout
                     android:layout_width="153dp"
-                    android:layout_height="109dp"
-                    >
+                    android:layout_height="109dp">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/stones_combinaison_1"
+                        android:id="@+id/tableau_combinaison_1"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY">
 
                     </androidx.recyclerview.widget.RecyclerView>
                 </FrameLayout>
 
                 <FrameLayout
                     android:layout_width="153dp"
-                    android:layout_height="109dp"
-                    >
+                    android:layout_height="109dp">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/stones_combinaison_2"
+                        android:id="@+id/tableau_combinaison_2"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY">
 
                     </androidx.recyclerview.widget.RecyclerView>
                 </FrameLayout>
 
                 <FrameLayout
                     android:layout_width="153dp"
-                    android:layout_height="109dp"
-                    >
+                    android:layout_height="109dp">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/stones_combinaison_3"
+                        android:id="@+id/tableau_combinaison_3"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY">
 
                     </androidx.recyclerview.widget.RecyclerView>
                 </FrameLayout>
 
                 <FrameLayout
                     android:layout_width="153dp"
-                    android:layout_height="109dp"
-                    >
+                    android:layout_height="109dp">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/stones_combinaison_4"
+                        android:id="@+id/tableau_combinaison_4"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY">
 
                     </androidx.recyclerview.widget.RecyclerView>
                 </FrameLayout>
@@ -94,52 +153,52 @@
 
                 <FrameLayout
                     android:layout_width="153dp"
-                    android:layout_height="109dp"
-                    >
+                    android:layout_height="109dp">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/stones_combinaison_5"
+                        android:id="@+id/tableau_combinaison_5"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY">
 
                     </androidx.recyclerview.widget.RecyclerView>
                 </FrameLayout>
 
                 <FrameLayout
                     android:layout_width="153dp"
-                    android:layout_height="109dp"
-                    >
+                    android:layout_height="109dp">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/stones_combinaison_6"
+                        android:id="@+id/tableau_combinaison_6"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY">
 
                     </androidx.recyclerview.widget.RecyclerView>
                 </FrameLayout>
 
                 <FrameLayout
                     android:layout_width="153dp"
-                    android:layout_height="109dp"
-                    >
+                    android:layout_height="109dp">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/stones_combinaison_7"
+                        android:id="@+id/tableau_combinaison_7"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY">
 
                     </androidx.recyclerview.widget.RecyclerView>
                 </FrameLayout>
 
                 <FrameLayout
                     android:layout_width="153dp"
-                    android:layout_height="109dp"
-                    >
+                    android:layout_height="109dp">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/stones_combinaison_8"
+                        android:id="@+id/tableau_combinaison_8"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY">
 
                     </androidx.recyclerview.widget.RecyclerView>
                 </FrameLayout>
@@ -152,52 +211,52 @@
 
                 <FrameLayout
                     android:layout_width="153dp"
-                    android:layout_height="109dp"
-                    >
+                    android:layout_height="109dp">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/stones_combinaison_9"
+                        android:id="@+id/tableau_combinaison_9"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY">
 
                     </androidx.recyclerview.widget.RecyclerView>
                 </FrameLayout>
 
                 <FrameLayout
                     android:layout_width="153dp"
-                    android:layout_height="109dp"
-                    >
+                    android:layout_height="109dp">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/stones_combinaison_10"
+                        android:id="@+id/tableau_combinaison_10"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY">
 
                     </androidx.recyclerview.widget.RecyclerView>
                 </FrameLayout>
 
                 <FrameLayout
                     android:layout_width="153dp"
-                    android:layout_height="109dp"
-                    >
+                    android:layout_height="109dp">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/stones_combinaison_11"
+                        android:id="@+id/tableau_combinaison_11"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY">
 
                     </androidx.recyclerview.widget.RecyclerView>
                 </FrameLayout>
 
                 <FrameLayout
                     android:layout_width="153dp"
-                    android:layout_height="109dp"
-                    >
+                    android:layout_height="109dp">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/stones_combinaison_12"
+                        android:id="@+id/tableau_combinaison_12"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY">
 
                     </androidx.recyclerview.widget.RecyclerView>
                 </FrameLayout>
@@ -209,52 +268,52 @@
 
                 <FrameLayout
                     android:layout_width="153dp"
-                    android:layout_height="109dp"
-                    >
+                    android:layout_height="109dp">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/stones_combinaison_13"
+                        android:id="@+id/tableau_combinaison_13"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY">
 
                     </androidx.recyclerview.widget.RecyclerView>
                 </FrameLayout>
 
                 <FrameLayout
                     android:layout_width="153dp"
-                    android:layout_height="109dp"
-                    >
+                    android:layout_height="109dp">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/stones_combinaison_14"
+                        android:id="@+id/tableau_combinaison_14"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY">
 
                     </androidx.recyclerview.widget.RecyclerView>
                 </FrameLayout>
 
                 <FrameLayout
                     android:layout_width="153dp"
-                    android:layout_height="109dp"
-                    >
+                    android:layout_height="109dp">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/stones_combinaison_15"
+                        android:id="@+id/tableau_combinaison_15"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY">
 
                     </androidx.recyclerview.widget.RecyclerView>
                 </FrameLayout>
 
                 <FrameLayout
                     android:layout_width="153dp"
-                    android:layout_height="109dp"
-                    >
+                    android:layout_height="109dp">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/stones_combinaison_16"
+                        android:id="@+id/tableau_combinaison_16"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY">
 
                     </androidx.recyclerview.widget.RecyclerView>
                 </FrameLayout>

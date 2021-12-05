@@ -15,15 +15,20 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projetesiee.R;
+import com.example.projetesiee.model.DBOpenHelper;
 import com.example.projetesiee.model.LeaderboardRecycleAdapter;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Set;
 
 public class LeaderboardActivity extends AppCompatActivity {
     
     private RecyclerView recyclerView;
     private ImageButton button_back;
     private LinearLayout linearLayout;
+    private DBOpenHelper dbOpenHelper;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,6 +48,18 @@ public class LeaderboardActivity extends AppCompatActivity {
                 startActivity(new Intent(LeaderboardActivity.this, MainActivity.class));
             }
         });
+
+        /*
+
+        dbOpenHelper = new DBOpenHelper(this);
+        HashMap<String,String > map = dbOpenHelper.getLeaderboard();
+
+        Set<String> keys = map.keySet();
+        ArrayList<String> l = (ArrayList<String>) keys;
+
+        for (String key : map.keySet()){
+
+        }*/
 
         ArrayList<String[]> dataSet = new  ArrayList<String[]>();
         //dataSet.add(new String[]{"1","lddùù","00:34"});

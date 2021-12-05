@@ -30,9 +30,10 @@ public class TableauRecycleAdapter extends RecyclerView.Adapter<TableauRecycleAd
         }
 
         public void setSize(int width,int height){
-            LinearLayout.LayoutParams layoutParams= new LinearLayout.LayoutParams((int)(width/QuestionTableauActivity.DensityOfApp),(int)(height/QuestionTableauActivity.DensityOfApp));
-            layoutParams.setMargins(0, 0, 0, 0);
-            imageView.setLayoutParams(layoutParams);
+            imageView.getLayoutParams().width=QuestionTableauActivity.valWidth;
+            imageView.getLayoutParams().height=QuestionTableauActivity.valHeight;
+            //layoutParams.setMargins(0, 0, 0, 0);
+            //imageView.setLayoutParams(layoutParams);
         }
 
         public ImageView getImageView() {

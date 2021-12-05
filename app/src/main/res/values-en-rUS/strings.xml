@@ -14,6 +14,7 @@
     <string name="correct_message">Correct!</string>
     <string name="incorrect_message">Incorrect!</string>
     <string name="go">Let\'s rock!</string>
+    <string name="question_tableau">Restore the painting</string>
 
     <string name="history_1_Q">	Who was the first president of the USA?</string>
     <string name="history_1_A">	George Washington</string>

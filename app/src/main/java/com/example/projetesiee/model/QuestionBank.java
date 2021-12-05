@@ -1,5 +1,7 @@
 package com.example.projetesiee.model;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -7,50 +9,25 @@ import java.util.Random;
 
 public class QuestionBank {
 
-    private final List<Question> mQuestionList;
-    private List<Integer> mQuestionOrder;
-    private int mQuestionIndex;
+    private static ArrayList<Class> activityClasses;
+    private static int mQuestionIndex=0;
 
-    public QuestionBank(List<Question> questionList) {
-        mQuestionList = questionList;
+    public static void setActivityClasses(ArrayList<Class> l){
+        activityClasses=l;
         mQuestionIndex=0;
-        mQuestionOrder= new ArrayList<Integer>();
-        Collections.shuffle(mQuestionList);
-        for (Question q: questionList){
-            mQuestionOrder.add(mQuestionList.indexOf(q));
-        }
     }
 
-    public String getOrder(){
-        return mQuestionOrder.toString();
+    public static Class getCurrentQuestion() {
+        return activityClasses.get(mQuestionIndex);
     }
 
-    public void setOrder(String order){
-        order=order.substring(1,order.length()-1);
-        mQuestionOrder= new ArrayList<Integer>();
-        for (String s : order.split(",")){
-            mQuestionOrder.add(Integer.parseInt(s.trim()));
-        }
-    }
-
-    public int getIndex(){
-        return mQuestionIndex;
-    }
-
-    public void setIndex(int index){
-        mQuestionIndex=index;
-    }
-
-    public Question getCurrentQuestion() {
-        return mQuestionList.get(mQuestionIndex);
-    }
-
-    public Question getNextQuestion() {
+    public static Class getNextQuestion() {
         mQuestionIndex++;
+        Log.d("tab","val="+mQuestionIndex);
         return getCurrentQuestion();
     }
 
-    public boolean isLastQuestion(){
-        return mQuestionIndex==mQuestionList.size()-1;
+    public static boolean isLastQuestion(){
+        return mQuestionIndex==activityClasses.size()-1;
     }
 }

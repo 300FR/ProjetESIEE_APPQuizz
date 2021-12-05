@@ -25,7 +25,7 @@ import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class QuestionCadenasActivity extends AppCompatActivity{
+public class QuestionCadenasActivity extends QuestionActivity{
 
     private Cadenas cadenas;
     public boolean temp=false;
@@ -34,9 +34,6 @@ public class QuestionCadenasActivity extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_question_cadenas);
 
         ArrayList<String> numbers = new ArrayList<>(Arrays.asList("0", "1", "2","3", "4", "5","6", "7", "8","9"));

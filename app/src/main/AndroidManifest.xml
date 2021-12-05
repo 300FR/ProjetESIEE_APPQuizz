@@ -30,7 +30,7 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="false" />
         <activity
-            android:name=".controller.GameActivity"
+            android:name=".controller.QuestionMusicActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="false" />
         <activity

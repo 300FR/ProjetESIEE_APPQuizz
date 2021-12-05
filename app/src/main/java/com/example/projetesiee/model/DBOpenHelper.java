@@ -12,6 +12,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class DBOpenHelper extends SQLiteOpenHelper {
 
@@ -23,6 +24,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
     public static final String CONTACTS_COLUMN_STREET = "street";
     public static final String CONTACTS_COLUMN_CITY = "place";
     public static final String CONTACTS_COLUMN_PHONE = "phone";
+    public static final String CONTACTS_COLUMN_BEST_SCORE = "best_score";
     private HashMap hp;
 
     public DBOpenHelper(Context context) {
@@ -43,6 +45,25 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         // TODO Auto-generated method stub
         db.execSQL("DROP TABLE IF EXISTS contacts");
         onCreate(db);
+    }
+
+    @SuppressLint("Range")
+    public HashMap<String,String> getLeaderboard(){
+        HashMap<String,String> map = new HashMap<String,String>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from contacts", null );
+        res.moveToFirst();
+
+        while(res.isAfterLast() == false){
+            map.put(
+                    res.getString(res.getColumnIndex(CONTACTS_COLUMN_BEST_SCORE)),
+                    res.getString(res.getColumnIndex(CONTACTS_COLUMN_NAME))
+            );
+            res.moveToNext();
+        }
+
+        return map;
     }
 
     public boolean insertContact (String name, String phone, String email, String street,String place) {

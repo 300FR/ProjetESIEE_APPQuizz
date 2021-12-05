@@ -1,5 +1,7 @@
 package com.example.projetesiee.controller;
 
+import static java.util.Collections.shuffle;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -20,7 +22,9 @@ import android.widget.TextView;
 
 import com.example.projetesiee.R;
 import com.example.projetesiee.model.DBOpenHelper;
+import com.example.projetesiee.model.QuestionBank;
 import com.example.projetesiee.model.User;
+import com.example.projetesiee.model.UtilGame;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -105,13 +109,28 @@ public class MainActivity extends AppCompatActivity {
                         .apply();
                 mUser.setFirstName(name);
 
-                //startActivityForResult(new Intent(MainActivity.this, GameActivity.class),REQUEST_CODE_GAME_ACTIVITY);
+                ArrayList<Class> activityClasses = new ArrayList<>();
+                activityClasses.add(QuestionTableauActivity.class);
+                activityClasses.add(QuestionBombeActivity.class);
+                activityClasses.add(QuestionMusicActivity.class);
+                activityClasses.add(QuestionMapsActivity.class);
+                shuffle(activityClasses);
+                activityClasses.add(QuestionCadenasActivity.class);
+                QuestionBank.setActivityClasses(activityClasses);
+
+                Intent intent = new Intent(MainActivity.this, QuestionBank.getCurrentQuestion());
+                intent.putExtra(UtilGame.KEY_CURRENT_TIME, "" + 0);
+                startActivity(intent);
+
+
+
+                //startActivityForResult(new Intent(MainActivity.this, QuestionMusicActivity.class),REQUEST_CODE_GAME_ACTIVITY);
                 //Intent intent = new Intent(MainActivity.this,QuestionBombeActivity.class);
                 //mUser.setIntent(intent);
                 //startActivity(intent);
                 //startActivity(new Intent(MainActivity.this,QuestionCadenasActivity.class));
                 //startActivity(new Intent(MainActivity.this, QuestionTableauActivity.class));
-                startActivity(new Intent(MainActivity.this, LeaderboardActivity.class));
+                //startActivity(new Intent(MainActivity.this, LeaderboardActivity.class));
             }
         });
 
@@ -140,10 +159,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         dbOpenHelper = new DBOpenHelper(this);
+        /*
         ArrayList array_list = dbOpenHelper.getAllCotacts();
         ArrayAdapter arrayAdapter=new ArrayAdapter(this,android.R.layout.simple_list_item_1, array_list);
 
-        dbOpenHelper.insertContact("coco","06","lol@","4bis","paris");
+        //dbOpenHelper.insertContact("coco","06","lol@","4bis","paris");
 
         Cursor rs = dbOpenHelper.getData(0);
         rs.moveToFirst();
@@ -157,14 +177,15 @@ public class MainActivity extends AppCompatActivity {
         if (!rs.isClosed())  {
             rs.close();
         }
-    }
+        */
 
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (REQUEST_CODE_GAME_ACTIVITY == requestCode && RESULT_OK == resultCode && data != null) {
-           int score = data.getIntExtra(GameActivity.BUNDLE_EXTRA_SCORE, 0);
+           int score = data.getIntExtra(QuestionMusicActivity.BUNDLE_EXTRA_SCORE, 0);
 
             getSharedPreferences(SHARED_PREF_USER_INFO, MODE_PRIVATE)
                     .edit()

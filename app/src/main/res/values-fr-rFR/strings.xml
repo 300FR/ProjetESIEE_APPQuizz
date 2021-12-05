@@ -14,6 +14,7 @@
     <string name="correct_message">Correct!</string>
     <string name="incorrect_message">Incorrect!</string>
     <string name="go">Jouer!</string>
+    <string name="question_tableau">Complétez le tableau</string>
 
     <string name="history_1_Q">	Qui est le premier président des Etats-Unis?</string>
     <string name="history_1_A">	George Washington</string>

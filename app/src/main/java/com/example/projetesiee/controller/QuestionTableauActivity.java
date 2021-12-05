@@ -4,12 +4,14 @@ import static androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_IDLE;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewParent;
@@ -20,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -31,48 +34,93 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.projetesiee.R;
 import com.example.projetesiee.model.Cadenas;
 import com.example.projetesiee.model.TableauRecycleAdapter;
+import com.example.projetesiee.model.User;
+import com.example.projetesiee.model.UtilGame;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
-public class QuestionTableauActivity extends AppCompatActivity {
+public class QuestionTableauActivity extends QuestionActivity {
 
     private Cadenas cadenas;
     private int ratioWidth;
     private int ratioHeight;
-    private int ratioWidthDP;
-    private int ratioHeightDP;
+    private ImageView preview;
+
+    private float ratio;
+
+    public static int valWidth;
+    public static int valHeight;
 
     public static float DensityOfApp;
 
-    @SuppressLint("ClickableViewAccessibility")
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
 
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_question_tableau);
+        this.preview = findViewById(R.id.image_preview_tableau);
 
         RecyclerView[] recyclerViews = {
-                findViewById(R.id.stones_combinaison_1),
-                findViewById(R.id.stones_combinaison_2),
-                findViewById(R.id.stones_combinaison_3),
-                findViewById(R.id.stones_combinaison_4),
-                findViewById(R.id.stones_combinaison_5),
-                findViewById(R.id.stones_combinaison_6),
-                findViewById(R.id.stones_combinaison_7),
-                findViewById(R.id.stones_combinaison_8),
-                findViewById(R.id.stones_combinaison_9),
-                findViewById(R.id.stones_combinaison_10),
-                findViewById(R.id.stones_combinaison_11),
-                findViewById(R.id.stones_combinaison_12),
-                findViewById(R.id.stones_combinaison_13),
-                findViewById(R.id.stones_combinaison_14),
-                findViewById(R.id.stones_combinaison_15),
-                findViewById(R.id.stones_combinaison_16)};
+                findViewById(R.id.tableau_combinaison_1),
+                findViewById(R.id.tableau_combinaison_2),
+                findViewById(R.id.tableau_combinaison_3),
+                findViewById(R.id.tableau_combinaison_4),
+                findViewById(R.id.tableau_combinaison_5),
+                findViewById(R.id.tableau_combinaison_6),
+                findViewById(R.id.tableau_combinaison_7),
+                findViewById(R.id.tableau_combinaison_8),
+                findViewById(R.id.tableau_combinaison_9),
+                findViewById(R.id.tableau_combinaison_10),
+                findViewById(R.id.tableau_combinaison_11),
+                findViewById(R.id.tableau_combinaison_12),
+                findViewById(R.id.tableau_combinaison_13),
+                findViewById(R.id.tableau_combinaison_14),
+                findViewById(R.id.tableau_combinaison_15),
+                findViewById(R.id.tableau_combinaison_16)};
+        setRecyclersViews(recyclerViews);
 
+        super.startTimer();
+        super.setContext(QuestionTableauActivity.this);
+    }
+
+    private Bitmap[] setBitmaps(){
+        int[] images = new int[]{ R.drawable.louis_xiv, R.drawable.joconde,R.drawable.arcimboldo,
+                R.drawable.charette,R.drawable.napoleon,R.drawable.francois_1er,R.drawable.la_laitiere};
+        int indexChoisi = (new Random()).nextInt(images.length);
+        this.preview.setImageResource(images[indexChoisi]);
+        Bitmap spriteSheet= BitmapFactory.decodeResource(getResources(),images[indexChoisi]);
+        int NBCol =4;
+        int NBLine =4;
+        Bitmap[] bitmaps= new Bitmap[NBCol*NBLine];
+        ratioWidth=spriteSheet.getWidth()/(NBCol);
+        ratioHeight=spriteSheet.getHeight()/(NBLine);
+        ratio=(float)ratioHeight/(float)ratioWidth;
+
+        for(int j=0; j<NBLine; j++) {
+            for(int i=0; i<NBCol; i++) {
+                bitmaps[j*NBCol+i] = Bitmap.createBitmap(spriteSheet, ratioWidth*i, ratioHeight*j,ratioWidth, ratioHeight);
+            }
+        }
+        return bitmaps;
+    }
+    public int dpToPx(int dp) {
+        float density = this.getResources()
+                .getDisplayMetrics()
+                .density;
+        return Math.round((float) dp * density);
+    }
+    public int pxToDp(int px) {
+        float density = this.getResources()
+                .getDisplayMetrics()
+                .density;
+        return Math.round((float) px / density);
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private void setRecyclersViews(RecyclerView[] recyclerViews){
         ArrayList<Bitmap> numbers = new ArrayList<>(Arrays.asList(setBitmaps()));
         TableauRecycleAdapter adapt = new TableauRecycleAdapter(numbers);
 
@@ -85,12 +133,14 @@ public class QuestionTableauActivity extends AppCompatActivity {
         }
         this.cadenas= new Cadenas(combinaison);
 
-
         for (int i=0;i<recyclerViews.length;i++) {
             final int index=i;
             LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-            FrameLayout.LayoutParams layoutParams= new FrameLayout.LayoutParams( ratioWidthDP,ratioHeightDP);
-            TableRow.LayoutParams layoutParamsParent= new TableRow.LayoutParams(ratioWidthDP,ratioHeightDP);
+
+            int w=230;
+            valWidth= w;
+            valHeight= (int)(w*ratio);
+            TableRow.LayoutParams layoutParamsParent= new TableRow.LayoutParams(valWidth,valHeight);
 
             RecyclerView.SmoothScroller smoothScroller = new LinearSmoothScroller(this) {
                 @Override protected int getVerticalSnapPreference() {
@@ -110,25 +160,22 @@ public class QuestionTableauActivity extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Log.d("lm","finalPOS = "+pos);
                                 smoothScroller.setTargetPosition(pos);
                                 layoutManager.startSmoothScroll(smoothScroller);
                                 recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                                     @SuppressLint("ClickableViewAccessibility")
                                     @Override
                                     public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                                        Log.d("lm","case random = "+pos);
-                                        switch (newState) {
-                                            case SCROLL_STATE_IDLE:
-                                                Log.d("lm","caseIDLE = "+pos);
-                                                if (cadenas.setCode(index, pos % numbers.size())) {
-                                                    Toast.makeText(QuestionTableauActivity.this, "fini!", Toast.LENGTH_SHORT).show();
-                                                }
-                                                recyclerView.removeOnScrollListener(this);
-                                                break;
-                                            default:
-                                                break;
-                                        }
+                                    switch (newState) {
+                                        case SCROLL_STATE_IDLE:
+                                            if (cadenas.setCode(index, pos % numbers.size())) {
+                                                MoveToNextQuestion(QuestionTableauActivity.this);
+                                            }
+                                            recyclerView.removeOnScrollListener(this);
+                                            break;
+                                        default:
+                                            break;
+                                    }
                                     }
                                 });
                             }
@@ -149,47 +196,11 @@ public class QuestionTableauActivity extends AppCompatActivity {
             if (parent!=null && parent instanceof FrameLayout){
                 ((FrameLayout) parent).setLayoutParams(layoutParamsParent);
             }
-            recyclerView.setLayoutParams(layoutParams);
+
             recyclerView.setAdapter(adapt);
 
-            layoutManager.scrollToPosition(100000000+this.cadenas.startingPosition[i]);
+            //layoutManager.scrollToPosition(100000000+this.cadenas.startingPosition[i]);
+            layoutManager.scrollToPosition(100000000+i+1);
         }
-
-
-    }
-
-
-    private Bitmap[] setBitmaps(){
-        Bitmap spriteSheet= BitmapFactory.decodeResource(getResources(), R.drawable.louis_xiv);
-        int NBCol =4;
-        int NBLine =4;
-        Bitmap[] bitmaps= new Bitmap[NBCol*NBLine];
-        ratioWidth=spriteSheet.getWidth()/(NBCol);
-        ratioHeight=spriteSheet.getHeight()/(NBLine);
-        ratioWidthDP =pxToDp(ratioWidth);
-        ratioHeightDP = pxToDp(ratioHeight);
-
-
-        for(int j=0; j<NBLine; j++) {
-            for(int i=0; i<NBCol; i++) {
-                bitmaps[j*NBCol+i] = Bitmap.createBitmap(spriteSheet, ratioWidth*i, ratioHeight*j,ratioWidth, ratioHeight);
-            }
-        }
-
-        return bitmaps;
-
-
-    }
-    public int dpToPx(int dp) {
-        float density = this.getResources()
-                .getDisplayMetrics()
-                .density;
-        return Math.round((float) dp * density);
-    }
-    public int pxToDp(int px) {
-        float density = this.getResources()
-                .getDisplayMetrics()
-                .density;
-        return Math.round((float) px / density);
     }
 }
