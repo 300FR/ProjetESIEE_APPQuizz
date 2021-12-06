@@ -56,7 +56,7 @@ public class QuestionCadenasActivity extends QuestionActivity{
         int choice = new Random().nextInt(2);
         if (code_0==-1 || choice==0){
             code_0= new Random().nextInt(10);;
-            indic+="Pour le dernier chiffre : ["+(2+code_0)+"+3*"+(4+code_0)+"-(-1)*e(iπ)*56/(1+"+(3+code_0)+")]";
+            indic+="Pour le dernier chiffre : ["+(2+code_0)+"+3*"+(4+code_0)+"-(-1)*e(iπ)*"+3*(4+code_0)*(1+3+code_0)+"/(1+"+(3+code_0)+")]";
         }else{
             indic+="Pour le dernier chiffre : \nA quelle position fallait-il couper le fil: " +text_0;
         }
@@ -136,6 +136,8 @@ public class QuestionCadenasActivity extends QuestionActivity{
             Log.d("eeeeeeeeeee",""+Integer.parseInt(s)+"\n");
         }
 
-        this.cadenas.setCodeSecret(codeSecret);
+        if (this.cadenas.setCodeSecret(codeSecret)){
+            QuestionCadenasActivity.super.GoBackToMain(QuestionCadenasActivity.this);
+        }
     }
 }

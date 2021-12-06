@@ -26,10 +26,11 @@ public class Cadenas {
         return isCodeRight();
     }
 
-    public void setCodeSecret(int[] codeSecret){
+    public Boolean setCodeSecret(int[] codeSecret){
         this.codeSecret[0]=codeSecret[0];
         this.codeSecret[1]=codeSecret[1];
         this.codeSecret[2]=codeSecret[2];
+        return isCodeRight();
     }
 
     public String affCode(){
