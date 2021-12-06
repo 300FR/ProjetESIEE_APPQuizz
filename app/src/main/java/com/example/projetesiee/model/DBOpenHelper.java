@@ -1,31 +1,25 @@
 package com.example.projetesiee.model;
 
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.provider.BaseColumns;
-import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Map;
 
 public class DBOpenHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "MyDBName.db";
-    public static final String CONTACTS_TABLE_NAME = "contacts";
-    public static final String CONTACTS_COLUMN_ID = "id";
-    public static final String CONTACTS_COLUMN_NAME = "name";
-    public static final String CONTACTS_COLUMN_EMAIL = "email";
-    public static final String CONTACTS_COLUMN_STREET = "street";
-    public static final String CONTACTS_COLUMN_CITY = "place";
-    public static final String CONTACTS_COLUMN_PHONE = "phone";
-    public static final String CONTACTS_COLUMN_BEST_SCORE = "best_score";
-    private HashMap hp;
+    public static final String USER_TABLE_NAME = "user";
+
+    public static final String USER_COLUMN_USERNAME = "username";
+    public static final String USER_COLUMN_BIRTHDAY = "birthday";
+    public static final String USER_COLUMN_LAST_LOGIN = "last_login";
+    public static final String USER_COLUMN_BEST_SCORE = "best_score";
 
     public DBOpenHelper(Context context) {
         super(context, DATABASE_NAME , null, 1);
@@ -35,8 +29,11 @@ public class DBOpenHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // TODO Auto-generated method stub
         db.execSQL(
-                "create table contacts " +
-                        "(id integer primary key, name text,phone text,email text, street text,place text)"
+                "create table "+USER_TABLE_NAME+" (" +
+                        USER_COLUMN_USERNAME +"text primary key, "+
+                        USER_COLUMN_BIRTHDAY +" text, "+
+                        USER_COLUMN_LAST_LOGIN +" text, "+
+                        USER_COLUMN_BEST_SCORE +" text)"
         );
     }
 
@@ -47,82 +44,140 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    @SuppressLint("Range")
+
     public HashMap<String,String> getLeaderboard(){
-        HashMap<String,String> map = new HashMap<String,String>();
+        HashMap<String,String> map = new HashMap<>();
 
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from contacts", null );
+        Cursor res =  db.rawQuery( "select * from "+USER_TABLE_NAME, null );
         res.moveToFirst();
 
-        while(res.isAfterLast() == false){
+        int bestScoreIndex = res.getColumnIndex(USER_COLUMN_BEST_SCORE);
+        int usernameIndex = res.getColumnIndex(USER_COLUMN_USERNAME);
+        while(!res.isAfterLast()){
             map.put(
-                    res.getString(res.getColumnIndex(CONTACTS_COLUMN_BEST_SCORE)),
-                    res.getString(res.getColumnIndex(CONTACTS_COLUMN_NAME))
+                    res.getString(bestScoreIndex),
+                    res.getString(usernameIndex)
             );
             res.moveToNext();
         }
-
+        res.close();
         return map;
     }
 
-    public boolean insertContact (String name, String phone, String email, String street,String place) {
+    public boolean insertUser (String username, String birthday) {
         SQLiteDatabase db = this.getWritableDatabase();
+        String currentTime = Calendar.getInstance().getTime().toString();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("id", 0);
-        contentValues.put("name", name);
-        contentValues.put("phone", phone);
-        contentValues.put("email", email);
-        contentValues.put("street", street);
-        contentValues.put("place", place);
-        db.insert("contacts", null, contentValues);
-        return true;
+        contentValues.put(USER_COLUMN_USERNAME, username);
+        contentValues.put(USER_COLUMN_BIRTHDAY, birthday);
+        contentValues.put(USER_COLUMN_BEST_SCORE, "0");
+        contentValues.put(USER_COLUMN_LAST_LOGIN, currentTime);
+        return (db.insert(USER_TABLE_NAME, null, contentValues)!=-1);
     }
 
-    public Cursor getData(int id) {
+    public boolean insertUser (String username, String birthday, String bestScore) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String currentTime = Calendar.getInstance().getTime().toString();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(USER_COLUMN_USERNAME, username);
+        contentValues.put(USER_COLUMN_BIRTHDAY, birthday);
+        contentValues.put(USER_COLUMN_BEST_SCORE, bestScore);
+        contentValues.put(USER_COLUMN_LAST_LOGIN, currentTime);
+        return (db.insert(USER_TABLE_NAME, null, contentValues)!=-1);
+    }
+
+    public Cursor getData(String username) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from contacts where id="+id+"", null );
+        Cursor res =  db.rawQuery( "select * from "+USER_TABLE_NAME+" where "+USER_COLUMN_USERNAME+"="+username+"", null );
         return res;
     }
 
     public int numberOfRows(){
         SQLiteDatabase db = this.getReadableDatabase();
-        int numRows = (int) DatabaseUtils.queryNumEntries(db, CONTACTS_TABLE_NAME);
+        int numRows = (int) DatabaseUtils.queryNumEntries(db, USER_TABLE_NAME);
         return numRows;
     }
 
-    public boolean updateContact (Integer id, String name, String phone, String email, String street,String place) {
+    public boolean editUser(User user, String username, String birthday){
+        SQLiteDatabase db = this.getWritableDatabase();
+        if(insertUser(username, birthday, String.valueOf(user.getBestScore()) )) {
+            db.delete(USER_TABLE_NAME, USER_COLUMN_USERNAME + "=?", new String[]{user.getUsername()});
+            return  true;
+        }
+        return false;
+    }
+
+    public boolean updateUserBestScore(String username, int Score){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("name", name);
-        contentValues.put("phone", phone);
-        contentValues.put("email", email);
-        contentValues.put("street", street);
-        contentValues.put("place", place);
-        db.update("contacts", contentValues, "id = ? ", new String[] { Integer.toString(id) } );
+        contentValues.put(USER_COLUMN_BEST_SCORE, username);
+        db.update(USER_TABLE_NAME, contentValues, USER_COLUMN_USERNAME+" = ? ", new String[] { username } );
         return true;
     }
 
-    public Integer deleteContact (Integer id) {
+    public boolean updateUser (String username, String birthday, String bestScore, String currentTime) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete("contacts",
-                "id = ? ",
-                new String[] { Integer.toString(id) });
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(USER_COLUMN_USERNAME, username);
+        contentValues.put(USER_COLUMN_BIRTHDAY, birthday);
+        contentValues.put(USER_COLUMN_BEST_SCORE, bestScore);
+        contentValues.put(USER_COLUMN_LAST_LOGIN, currentTime);
+        db.update(USER_TABLE_NAME, contentValues, USER_COLUMN_USERNAME+" = ? ", new String[] { username } );
+        return true;
     }
 
-    @SuppressLint("Range")
-    public ArrayList<String> getAllCotacts() {
-        ArrayList<String> array_list = new ArrayList<String>();
+    public int deleteUser (User user) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(USER_TABLE_NAME, USER_COLUMN_USERNAME + "=?", new String[]{user.getUsername()});
+    }
 
-        //hp = new HashMap();
+    public ArrayList<String> getAllUsers() {
+        ArrayList<String> array_list = new ArrayList<>();
+
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res =  db.rawQuery( "select * from contacts", null );
         res.moveToFirst();
 
-        while(res.isAfterLast() == false){
-            array_list.add(res.getString(res.getColumnIndex(CONTACTS_COLUMN_NAME)));
+        int usernameIndex = res.getColumnIndex(USER_COLUMN_USERNAME);
+
+        while(!res.isAfterLast()){
+            array_list.add(res.getString(usernameIndex));
             res.moveToNext();
         }
+        res.close();
         return array_list;
+    }
+
+    public User getUser(String username){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from "+USER_TABLE_NAME+" where "+USER_COLUMN_USERNAME+"="+username, null );
+        if(res.moveToFirst()){
+            int birthdayIndex = res.getColumnIndex(USER_COLUMN_BIRTHDAY);
+            int bestScoreIndex = res.getColumnIndex(USER_COLUMN_BEST_SCORE);
+
+            String birthday = res.getString(birthdayIndex);
+            int bestScore = Integer.parseInt(res.getString(bestScoreIndex));
+            res.close();
+            return new User(username, bestScore, birthday);
+        }
+        return null;
+    }
+
+    public User getLastUser(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select USER_COLUMN_NAME from USER_TABLE_NAME order by USER_COLUMN_LAST_LOGIN desc limit 1", null );
+        if(res.moveToFirst()){
+            int usernameIndex = res.getColumnIndex(USER_COLUMN_USERNAME);
+            int birthdayIndex = res.getColumnIndex(USER_COLUMN_BIRTHDAY);
+            int bestScoreIndex = res.getColumnIndex(USER_COLUMN_BEST_SCORE);
+
+            String username = res.getString(usernameIndex);
+            String birthday = res.getString(birthdayIndex);
+            int bestScore = Integer.parseInt(res.getString(bestScoreIndex));
+            res.close();
+            return new User(username, bestScore, birthday);
+        }
+        return null;
     }
 }

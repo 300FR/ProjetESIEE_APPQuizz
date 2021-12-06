@@ -8,7 +8,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.database.Cursor;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.text.Editable;
@@ -60,6 +59,12 @@ public class MainActivity extends AppCompatActivity {
     @Override @SuppressLint("Range")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        DBOpenHelper dbHelper = new DBOpenHelper(getBaseContext());
+
+        User user = dbHelper.getLastUser();
+
+
         setContentView(R.layout.activity_main);
 
         setScreenCenter();
@@ -113,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
                         .edit()
                         .putString(SHARED_PREF_USER_INFO_NAME, name)
                         .apply();
-                mUser.setFirstName(name);
+                mUser.setUsername(name);
 
                 ArrayList<Class> activityClasses = new ArrayList<>();
                 activityClasses.add(QuestionTableauActivity.class);

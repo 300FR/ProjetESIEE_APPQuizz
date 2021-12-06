@@ -51,4 +51,11 @@
         <string name="history_6_B">Louis 9</string>
         <string name="history_6_C">Louis 13</string>
         <string name="history_6_D">Louis 14</string>
+    <string name="button_create_user">Create user</string>
+    <string name="Welcome">Welcome!</string>
+    <string name="button_edit_user_info">Edit user</string>
+    <string name="Welcome_back_name">Welcome back %1$s.</string>
+    <string name="main_not_user">Not %1$s?</string>
+    <string name="main_create_new_user">Create new user</string>
+    <string name="birthday">Birthday</string>
 </resources>
