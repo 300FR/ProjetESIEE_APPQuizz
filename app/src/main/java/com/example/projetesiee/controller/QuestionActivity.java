@@ -28,6 +28,7 @@ public class QuestionActivity extends AppCompatActivity {
     protected User user;
     protected Context context;
     protected String dataForLastQuestion;
+    protected String currentTimeText;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState){
@@ -54,10 +55,15 @@ public class QuestionActivity extends AppCompatActivity {
         currentTime=(int)startTime;
         minuteur = new Timer(); TimerTask taskTime = new TimerTask() {@Override public void run() {
             runOnUiThread(new Runnable() { @Override public void run() {
-                MinuteurView.setText(UtilGame.displayTime((int)startTime+ currentTime++));
-            } });}
-        };
+                runInTimer();
+            } });
+        }};
         minuteur.scheduleAtFixedRate(taskTime,startTime,delay);
+    }
+
+    protected void runInTimer(){
+        currentTimeText=UtilGame.displayTime((int)startTime+ currentTime++);
+        MinuteurView.setText(currentTimeText);
     }
 
     protected void setContext(Context c){
@@ -82,11 +88,9 @@ public class QuestionActivity extends AppCompatActivity {
         Intent before =getIntent();
         Bundle bundle = before.getExtras();
         if (bundle != null) {
-            for (Class c : QuestionBank.getActivityClasses()) {
-                String key=c.toString();
-                if (bundle.get(key)!=null){
-                    intent.putExtra(key, bundle.get(key).toString());
-                }
+            String key=QuestionBombeActivity.class.getName();
+            if (bundle.get(key)!=null){
+                intent.putExtra(key, bundle.get(key).toString());
             }
         }
         if (dataForLastQuestion!=null){

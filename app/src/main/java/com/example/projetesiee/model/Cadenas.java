@@ -26,6 +26,12 @@ public class Cadenas {
         return isCodeRight();
     }
 
+    public void setCodeSecret(int[] codeSecret){
+        this.codeSecret[0]=codeSecret[0];
+        this.codeSecret[1]=codeSecret[1];
+        this.codeSecret[2]=codeSecret[2];
+    }
+
     public String affCode(){
         String s="tab= [";
         for (int i : actualCode){

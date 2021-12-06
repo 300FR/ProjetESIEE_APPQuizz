@@ -245,7 +245,7 @@ public class QuestionBombeActivity extends QuestionActivity {
             orderedWires.add(v);
         }
         index=(new Random()).nextInt(fils.size());
-        super.dataForLastQuestion=nameWires.get(fils.get(index).getId())+SEPARATOR+index;
+        super.dataForLastQuestion=""+nameWires.get(fils.get(index).getId())+SEPARATOR+index;
         this.instruction.setText(textForInstruction.substring(1));
     }
 }

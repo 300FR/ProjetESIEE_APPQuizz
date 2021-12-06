@@ -5,33 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="39dp"
-        android:gravity="right"
-        android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="55dp"
-            android:layout_height="match_parent"
-            android:gravity="center">
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:srcCompat="@drawable/fond_noir" />
-
-            <TextView
-                android:id="@+id/minuteur_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="00:00"
-                android:textColor="#FFFFFF" />
-        </RelativeLayout>
-
-    </LinearLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -43,6 +17,36 @@
             android:layout_gravity="center_horizontal"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:id="@+id/minuteur_layout"
+                android:layout_width="match_parent"
+                android:layout_height="39dp"
+                android:layout_margin="4dp"
+                android:gravity="right"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="55dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:srcCompat="@drawable/fond_noir" />
+
+                    <TextView
+                        android:id="@+id/minuteur_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="00:00"
+                        android:textColor="#FFFFFF" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="373dp"
@@ -53,7 +57,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="386dp"
+                android:layout_height="128dp"
                 android:layout_gravity="center_horizontal">
 
                 <ScrollView
@@ -64,7 +68,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginStart="28dp"
                     android:layout_marginEnd="311dp"
-                    android:layout_marginBottom="331dp">
+                    android:layout_marginBottom="33dp">
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/cadenas_combinaison_1"
@@ -82,7 +86,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginStart="119dp"
                     android:layout_marginEnd="215dp"
-                    android:layout_marginBottom="328dp">
+                    android:layout_marginBottom="33dp">
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/cadenas_combinaison_2"
@@ -102,7 +106,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginStart="217dp"
                     android:layout_marginEnd="119dp"
-                    android:layout_marginBottom="328dp">
+                    android:layout_marginBottom="33dp">
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/cadenas_combinaison_3"
@@ -122,7 +126,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginStart="311dp"
                     android:layout_marginEnd="27dp"
-                    android:layout_marginBottom="329dp">
+                    android:layout_marginBottom="33dp">
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/cadenas_combinaison_4"
@@ -135,6 +139,14 @@
                 </ScrollView>
 
             </RelativeLayout>
+
+            <TextView
+                android:id="@+id/cadenas_indication_text"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:gravity="center"
+                android:textSize="20sp" />
+
         </LinearLayout>
 
     </FrameLayout>
