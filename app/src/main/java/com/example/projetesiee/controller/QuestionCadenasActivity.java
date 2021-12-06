@@ -91,5 +91,7 @@ public class QuestionCadenasActivity extends QuestionActivity{
 
             layout.scrollToPosition(100000000+this.cadenas.startingPosition[i]);
         }
+        super.startTimer();
+        super.setContext(this);
     }
 }

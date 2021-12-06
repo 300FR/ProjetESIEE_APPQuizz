@@ -5,13 +5,17 @@ import static java.util.Collections.shuffle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.Cursor;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Display;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -57,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        setScreenCenter();
 
         mGreetingTextView = findViewById(R.id.main_textview_bienvenu);
         mNameEditText = findViewById(R.id.main_edittext_nom);
@@ -122,15 +128,6 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra(UtilGame.KEY_CURRENT_TIME, "" + 0);
                 startActivity(intent);
 
-
-
-                //startActivityForResult(new Intent(MainActivity.this, QuestionMusicActivity.class),REQUEST_CODE_GAME_ACTIVITY);
-                //Intent intent = new Intent(MainActivity.this,QuestionBombeActivity.class);
-                //mUser.setIntent(intent);
-                //startActivity(intent);
-                //startActivity(new Intent(MainActivity.this,QuestionCadenasActivity.class));
-                //startActivity(new Intent(MainActivity.this, QuestionTableauActivity.class));
-                //startActivity(new Intent(MainActivity.this, LeaderboardActivity.class));
             }
         });
 
@@ -232,5 +229,15 @@ public class MainActivity extends AppCompatActivity {
         mNameEditText.setText(firstName);
         mUserBestScore.setText(""+bestScore);
         mUserName.setText(firstName);
+    }
+
+    private void setScreenCenter(){
+        Display display = ((WindowManager) this
+                .getSystemService(Context.WINDOW_SERVICE))
+                .getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        UtilGame.centerWidth=size.x/2;
+        UtilGame.centerHeight=size.y/2;
     }
 }

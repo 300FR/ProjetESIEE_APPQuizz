@@ -51,6 +51,7 @@ public class QuestionMapsActivity extends QuestionActivity {
         this.myMapFragment.setQuestionMapsActivity(this);
 
 
+        super.startTimer();
         super.setContext(this);
     }
 

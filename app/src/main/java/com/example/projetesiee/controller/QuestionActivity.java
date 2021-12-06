@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.example.projetesiee.R;
 import com.example.projetesiee.model.QuestionBank;
@@ -26,6 +27,7 @@ public class QuestionActivity extends AppCompatActivity {
     protected Timer minuteur;
     protected User user;
     protected Context context;
+    protected String dataForLastQuestion;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState){
@@ -36,12 +38,15 @@ public class QuestionActivity extends AppCompatActivity {
         Intent intent = getIntent();
         user = new User();
         user.setIntent(intent);
+        dataForLastQuestion=null;
     }
 
     @Override
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
         this.MinuteurView=findViewById(R.id.minuteur_view);
+        this.MinuteurView.setTypeface(ResourcesCompat.getFont(this,R.font.digital_numbers));
+        this.MinuteurView.setTextSize(12);
     }
 
     protected void startTimer(){
@@ -74,6 +79,18 @@ public class QuestionActivity extends AppCompatActivity {
 
     protected void MoveToNextQuestion(Context actual){
         Intent intent = new Intent( actual, QuestionBank.getNextQuestion());
+        Intent before =getIntent();
+        Bundle bundle = before.getExtras();
+        if (bundle != null) {
+            for (String key : bundle.keySet()) {
+                if (bundle.get(key)!=null){
+                    intent.putExtra(key, (String) bundle.get(key));
+                }
+            }
+        }
+        if (dataForLastQuestion!=null){
+            intent.putExtra(actual.getClass().getName(),dataForLastQuestion);
+        }
         intent.putExtra(UtilGame.KEY_CURRENT_TIME, "" + currentTime);
         startActivity(intent);
     }

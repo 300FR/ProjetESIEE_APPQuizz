@@ -11,7 +11,10 @@
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,54 +51,87 @@
 
             <ImageView
                 android:id="@+id/bombe_fond"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:translationX="0dp"
-                android:translationY="0dp"
-                app:srcCompat="@drawable/bomb" />
+                android:layout_width="370dp"
+                android:layout_height="650dp"
+                app:srcCompat="@drawable/bombe" />
+
+            <TextView
+                android:id="@+id/bombe_instruction_text"
+                android:layout_width="290dp"
+                android:layout_height="50dp"
+                android:textSize="20sp"
+                android:translationX="50dp"
+                android:translationY="450dp" />
 
             <TextView
                 android:id="@+id/bombe_timer"
-                android:layout_width="94dp"
+                android:layout_width="106dp"
                 android:layout_height="48dp"
                 android:ems="10"
                 android:gravity="center"
                 android:inputType="time"
-                android:translationX="160dp"
-                android:translationY="350dp"
+                android:textColor="#E2E30000"
+                android:textSize="28sp"
+                android:translationX="130dp"
+                android:translationY="320dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <View
-                android:id="@+id/bombe_red_wire"
-                android:layout_width="28dp"
-                android:layout_height="140dp"
+                android:id="@+id/bombe_blue_wire"
+                android:layout_width="76dp"
+                android:layout_height="13dp"
                 android:background="#FFFFFF"
-                android:translationX="80dp"
-                android:translationY="190dp"
+                android:translationX="65dp"
+                android:translationY="235dp"
                 android:visibility="invisible" />
 
             <View
-                android:id="@+id/bombe_blue_wire"
-                android:layout_width="42dp"
-                android:layout_height="166dp"
+                android:id="@+id/bombe_yellow_wire"
+                android:layout_width="65dp"
+                android:layout_height="11dp"
                 android:background="#FFFFFF"
-                android:translationX="300dp"
-                android:translationY="190dp"
+                android:translationX="70dp"
+                android:translationY="251dp"
+                android:visibility="invisible" />
+
+            <View
+                android:id="@+id/bombe_green_wire"
+                android:layout_width="76dp"
+                android:layout_height="10dp"
+                android:background="#FFFFFF"
+                android:translationX="215dp"
+                android:translationY="242dp"
+                android:visibility="invisible" />
+
+            <View
+                android:id="@+id/bombe_red_wire"
+                android:layout_width="66dp"
+                android:layout_height="11dp"
+                android:background="#FFFFFF"
+                android:translationX="215dp"
+                android:translationY="255dp"
                 android:visibility="invisible" />
 
         </FrameLayout>
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/bombe_couteau"
-        android:layout_width="116dp"
-        android:layout_height="114dp"
+    <FrameLayout
+        android:id="@+id/bombe_frame_couteau"
+        android:layout_width="59dp"
+        android:layout_height="14dp"
         android:layout_marginStart="150dp"
         android:layout_marginTop="150dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/couteau" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cropToPadding="true"
+            app:srcCompat="@drawable/couteau" />
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
