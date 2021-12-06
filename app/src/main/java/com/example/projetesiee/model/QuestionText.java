@@ -19,7 +19,7 @@ public class QuestionText {
     public QuestionText(int NBChoices,String dataQuestion) {
         mChoiceList= new ArrayList<>();
         int index=0;
-        for (String data : dataQuestion.split("\\"+QuestionMusicActivity.SEPARATOR)){
+        for (String data : dataQuestion.split("\\"+UtilGame.SEPARATOR)){
             if (index==0) mQuestion=data;
             if (index>=1 && index<=NBChoices) mChoiceList.add(data);
             if (index==NBChoices+1) mAnswerIndex=Integer.parseInt(data);

@@ -82,9 +82,10 @@ public class QuestionActivity extends AppCompatActivity {
         Intent before =getIntent();
         Bundle bundle = before.getExtras();
         if (bundle != null) {
-            for (String key : bundle.keySet()) {
+            for (Class c : QuestionBank.getActivityClasses()) {
+                String key=c.toString();
                 if (bundle.get(key)!=null){
-                    intent.putExtra(key, (String) bundle.get(key));
+                    intent.putExtra(key, bundle.get(key).toString());
                 }
             }
         }

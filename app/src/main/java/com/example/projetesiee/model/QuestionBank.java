@@ -27,6 +27,10 @@ public class QuestionBank {
         return getCurrentQuestion();
     }
 
+    public static ArrayList<Class> getActivityClasses(){
+        return activityClasses;
+    }
+
     public static boolean isLastQuestion(){
         return mQuestionIndex==activityClasses.size()-1;
     }

@@ -1,5 +1,6 @@
 package com.example.projetesiee.controller;
 
+import static com.example.projetesiee.model.UtilGame.SEPARATOR;
 import static java.util.Collections.shuffle;
 
 import android.annotation.SuppressLint;
@@ -28,6 +29,7 @@ import com.example.projetesiee.model.UtilGame;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 import java.util.Stack;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -242,6 +244,8 @@ public class QuestionBombeActivity extends QuestionActivity {
             textForInstruction+="/"+nameWires.get(fils.get(fils.size()-1-index++).getId());
             orderedWires.add(v);
         }
+        index=(new Random()).nextInt(fils.size());
+        super.dataForLastQuestion=nameWires.get(fils.get(index).getId())+SEPARATOR+index;
         this.instruction.setText(textForInstruction.substring(1));
     }
 }

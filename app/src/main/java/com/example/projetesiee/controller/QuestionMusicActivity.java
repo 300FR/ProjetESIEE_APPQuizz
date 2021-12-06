@@ -1,5 +1,7 @@
 package com.example.projetesiee.controller;
 
+import static com.example.projetesiee.model.UtilGame.SEPARATOR;
+
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -30,7 +32,7 @@ public class QuestionMusicActivity extends QuestionActivity implements View.OnCl
     private static final String CLE_QUESTION_ORDER = "CLE_QUESTION_ORDER";
     private static final String CLE_QUESTION_INDEX = "CLE_QUESTION_INDEX";
     private static final String CLE_SCORE = "CLE_SCORE";
-    public static final String SEPARATOR="~";
+
 
     private TextView mQuestionTextView;
     private Button mAButton;
