@@ -50,30 +50,39 @@
             android:text="@string/Welcome_back_name"
             android:textAlignment="center"
             android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/edit_user_button"
+            app:layout_constraintEnd_toStartOf="@+id/delete_user_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/edit_user_button"
-            android:layout_width="81dp"
-            android:layout_height="62dp"
-            android:layout_marginStart="32dp"
-            android:text="@string/button_edit_user_info"
+            android:id="@+id/delete_user_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/delete_user"
             app:layout_constraintBaseline_toBaselineOf="@+id/Welcome_back"
             app:layout_constraintStart_toEndOf="@+id/Welcome_back" />
 
+        <Button
+            android:id="@+id/create_user_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/create_user"
+            app:layout_constraintBaseline_toBaselineOf="@+id/not_user_text"
+            app:layout_constraintStart_toEndOf="@+id/user_spinner" />
+
         <ImageButton
             android:id="@+id/leaderboardButton"
-            android:layout_width="67dp"
-            android:layout_height="63dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/edit_user_button"
+            app:layout_constraintStart_toEndOf="@+id/delete_user_button"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/leaderboard_icon"
             tools:ignore="ImageContrastCheck" />

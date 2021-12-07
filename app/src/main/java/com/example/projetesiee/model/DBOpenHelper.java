@@ -146,7 +146,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         ArrayList<String> array_list = new ArrayList<>();
 
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from contacts", null );
+        Cursor res =  db.rawQuery( "select * from "+USER_TABLE_NAME, null );
         res.moveToFirst();
 
         int usernameIndex = res.getColumnIndex(USER_COLUMN_USERNAME);
@@ -161,7 +161,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
 
     public User getUser(String username){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from "+USER_TABLE_NAME+" where "+USER_COLUMN_USERNAME+"="+username, null );
+        Cursor res =  db.rawQuery( "select * from "+USER_TABLE_NAME+" where "+USER_COLUMN_USERNAME+" = '"+username+"'", null );
         if(res.moveToFirst()){
             int birthdayIndex = res.getColumnIndex(USER_COLUMN_BIRTHDAY);
             int bestScoreIndex = res.getColumnIndex(USER_COLUMN_BEST_SCORE);

@@ -8,11 +8,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.graphics.Point;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
@@ -20,7 +17,6 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -45,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String SHARED_PREF_USER_INFO_BEST_SCORE = "SHARED_PREF_USER_INFO_BEST_SCORE";
 
     private TextView mGreetingTextView;
-    private Button mEditUserButton;
+    private Button mCreateUserButton;
+    private Button mDeleteUserButton;
     private TextView mChangeUserTextView;
     private ImageButton mLeaderboardButton;
     private Button mPlayButton;
@@ -70,8 +67,10 @@ public class MainActivity extends AppCompatActivity {
         mUser = dbOpenHelper.getLastUser();
 
         if(mUser == null){
-            Intent intent = new Intent(getBaseContext(), CreateUser.class);
+            Intent intent = new Intent(MainActivity.this, Welcome.class);
             startActivity(intent);
+            this.finish();
+            return;
         }
 
 
@@ -79,8 +78,9 @@ public class MainActivity extends AppCompatActivity {
 
         setScreenCenter();
 
-        mGreetingTextView = findViewById(R.id.main_textview_bienvenu);
-        mEditUserButton = findViewById(R.id.edit_user_button);
+        mGreetingTextView = findViewById(R.id.Welcome_back);
+        mCreateUserButton = findViewById(R.id.create_user_button);
+        mDeleteUserButton = findViewById(R.id.delete_user_button);
         mPlayButton = findViewById(R.id.main_button_play);
         mChangeUserTextView = findViewById(R.id.not_user_text);
         mLeaderboardButton = findViewById(R.id.leaderboardButton);
@@ -89,20 +89,15 @@ public class MainActivity extends AppCompatActivity {
 
         updateUserName();
 
-        ArrayList<String> userList = dbOpenHelper.getAllUsers();
-
-        mUserSpinner.setAdapter(new ArrayAdapter<>(this,R.layout.spinner_item, userList));
-        mUserSpinner.setSelection(userList.indexOf(mUser.getUsername()));
-
         mUserSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Adapter adapter = parent.getAdapter();
                 String user = (String) adapter.getItem(position);
 
-                if (user != mUser.getUsername()) return;
+                if (user == mUser.getUsername()) return;
 
                 mUser = dbOpenHelper.getUser(user);
-
+                updateUserName();
             }
             @Override public void onNothingSelected(AdapterView<?> parent) { }
         });
@@ -156,10 +151,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mEditUserButton.setOnClickListener(new View.OnClickListener() {
+        mCreateUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO
+
+                Intent intent = new Intent(MainActivity.this, CreateUser.class);
+                startActivity(intent);
                 /*
 
                 getSharedPreferences(SHARED_PREF_USER_INFO, MODE_PRIVATE)
@@ -175,24 +173,27 @@ public class MainActivity extends AppCompatActivity {
                 */
             }
         });
-
+        mDeleteUserButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dbOpenHelper.deleteUser(mUser);
+                mUser = dbOpenHelper.getLastUser();
+                if(mUser == null){
+                    Intent intent = new Intent(MainActivity.this, Welcome.class);
+                    startActivity(intent);
+                    return;
+                }
+                updateUserName();
+            }
+        });
         mLeaderboardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(MainActivity.this, LeaderboardActivity.class);
                 startActivity(intent);
             }
         });
 
-        mNameEditText.addTextChangedListener(new TextWatcher() {
-            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {  }
-            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {  }
-
-            @Override public void afterTextChanged(Editable s) {
-                mPlayButton.setEnabled(!s.toString().isEmpty());
-            }
-        });
 
         /*
         ArrayList array_list = dbOpenHelper.getAllCotacts();
@@ -218,6 +219,10 @@ public class MainActivity extends AppCompatActivity {
     protected void updateUserName() {
         mGreetingTextView.setText(getString(R.string.Welcome_back_name, mUser.getUsername()));
         mChangeUserTextView.setText(getString(R.string.main_not_user, mUser.getUsername()));
+        ArrayList<String> userList = dbOpenHelper.getAllUsers();
+
+        mUserSpinner.setAdapter(new ArrayAdapter<>(this,R.layout.spinner_item, userList));
+        mUserSpinner.setSelection(userList.indexOf(mUser.getUsername()));
     }
 
     @Override
@@ -231,7 +236,7 @@ public class MainActivity extends AppCompatActivity {
                     .edit()
                     .putInt(SHARED_PREF_USER_INFO_SCORE, score)
                     .apply();
-            sameUser();
+            //sameUser();
 
         }
     }
@@ -245,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
         if (index==langues.length) index=0;
         return index;
     }
-
+/*
     private void sameUser() {
         String firstName = getSharedPreferences(SHARED_PREF_USER_INFO, MODE_PRIVATE).getString(SHARED_PREF_USER_INFO_NAME, null);
         int score = getSharedPreferences(SHARED_PREF_USER_INFO, MODE_PRIVATE).getInt(SHARED_PREF_USER_INFO_SCORE, -1);
@@ -272,7 +277,7 @@ public class MainActivity extends AppCompatActivity {
         mNameEditText.setText(firstName);
         mUserBestScore.setText(""+bestScore);
         mUserName.setText(firstName);
-    }
+    }*/
 
     private void setScreenCenter(){
         Display display = ((WindowManager) this

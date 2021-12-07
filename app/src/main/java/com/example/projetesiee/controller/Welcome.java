@@ -1,6 +1,5 @@
 package com.example.projetesiee.controller;
 
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,15 +10,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.projetesiee.R;
 
-import java.util.Calendar;
-
 public class Welcome extends AppCompatActivity {
     private Button mCreateButton;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mCreateButton = findViewById(R.id.create_user_button);
+        setContentView(R.layout.main_screen_new_user);
+        mCreateButton = findViewById(R.id.welcome_create_user_button);
 
         mCreateButton.setOnClickListener(new View.OnClickListener() {
             @Override
