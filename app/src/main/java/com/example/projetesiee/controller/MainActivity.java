@@ -60,10 +60,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        DBOpenHelper dbHelper = new DBOpenHelper(getBaseContext());
+        dbOpenHelper = new DBOpenHelper(getBaseContext());
 
-        User user = dbHelper.getLastUser();
+        //dbOpenHelper.insertUser("b", "2021-11-07");
 
+        User user = dbOpenHelper.getLastUser();
+
+        if(user == null){
+            Intent intent = new Intent(this, CreateUser.class);
+            startActivity(intent);
+        }
 
         setContentView(R.layout.activity_main);
 
@@ -160,7 +166,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        dbOpenHelper = new DBOpenHelper(this);
         /*
         ArrayList array_list = dbOpenHelper.getAllCotacts();
         ArrayAdapter arrayAdapter=new ArrayAdapter(this,android.R.layout.simple_list_item_1, array_list);
@@ -180,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
             rs.close();
         }
         */
-
+        mGreetingTextView.setText("AA test user :"+user.getUsername());
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -245,4 +250,9 @@ public class MainActivity extends AppCompatActivity {
         UtilGame.centerWidth=size.x/2;
         UtilGame.centerHeight=size.y/2;
     }
+
+    private void updateUserScore(User user){
+        dbOpenHelper.updateUser(user);
+    }
+
 }

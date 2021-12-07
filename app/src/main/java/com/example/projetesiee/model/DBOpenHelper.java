@@ -27,10 +27,9 @@ public class DBOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // TODO Auto-generated method stub
         db.execSQL(
-                "create table "+USER_TABLE_NAME+" (" +
-                        USER_COLUMN_USERNAME +"text primary key, "+
+                "create table "+USER_TABLE_NAME+" ( " +
+                        USER_COLUMN_USERNAME +" text primary key, "+
                         USER_COLUMN_BIRTHDAY +" text, "+
                         USER_COLUMN_LAST_LOGIN +" text, "+
                         USER_COLUMN_BEST_SCORE +" text)"
@@ -39,8 +38,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // TODO Auto-generated method stub
-        db.execSQL("DROP TABLE IF EXISTS contacts");
+        db.execSQL("DROP TABLE IF EXISTS "+USER_TABLE_NAME);
         onCreate(db);
     }
 
@@ -116,15 +114,27 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public boolean updateUser (String username, String birthday, String bestScore, String currentTime) {
+    public boolean updateUser(User user){
+        return updateUser(user.getUsername(), user.getBirthday(), String.valueOf(user.getBestScore()));
+    }
+
+    public boolean updateUser (String username, String birthday, String bestScore) {
         SQLiteDatabase db = this.getWritableDatabase();
+        String currentTime = Calendar.getInstance().getTime().toString();
         ContentValues contentValues = new ContentValues();
         contentValues.put(USER_COLUMN_USERNAME, username);
         contentValues.put(USER_COLUMN_BIRTHDAY, birthday);
         contentValues.put(USER_COLUMN_BEST_SCORE, bestScore);
         contentValues.put(USER_COLUMN_LAST_LOGIN, currentTime);
-        db.update(USER_TABLE_NAME, contentValues, USER_COLUMN_USERNAME+" = ? ", new String[] { username } );
-        return true;
+        return db.update(USER_TABLE_NAME, contentValues, USER_COLUMN_USERNAME+" = ? ", new String[] { username } ) != -1;
+    }
+
+    public boolean updateUserLastLogin(String username){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        String currentTime = Calendar.getInstance().getTime().toString();
+        contentValues.put(USER_COLUMN_LAST_LOGIN, currentTime);
+        return db.update(USER_TABLE_NAME, contentValues, USER_COLUMN_USERNAME+" = ? ", new String[] { username } ) != -1;
     }
 
     public int deleteUser (User user) {
@@ -159,6 +169,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
             String birthday = res.getString(birthdayIndex);
             int bestScore = Integer.parseInt(res.getString(bestScoreIndex));
             res.close();
+            updateUserLastLogin(username);
             return new User(username, bestScore, birthday);
         }
         return null;
@@ -166,7 +177,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
 
     public User getLastUser(){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select USER_COLUMN_NAME from USER_TABLE_NAME order by USER_COLUMN_LAST_LOGIN desc limit 1", null );
+        Cursor res =  db.rawQuery( "select * from "+USER_TABLE_NAME+" order by "+USER_COLUMN_LAST_LOGIN+" desc limit 1", null );
         if(res.moveToFirst()){
             int usernameIndex = res.getColumnIndex(USER_COLUMN_USERNAME);
             int birthdayIndex = res.getColumnIndex(USER_COLUMN_BIRTHDAY);

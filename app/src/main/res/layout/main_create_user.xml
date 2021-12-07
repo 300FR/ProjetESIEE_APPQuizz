@@ -66,7 +66,7 @@
                         android:text="@string/your_name" />
 
                     <EditText
-                        android:id="@id/main_edittext_nom"
+                        android:id="@+id/username"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginStart="16dp"
@@ -110,7 +110,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/m"
+                    android:id="@+id/create_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="45dp"
