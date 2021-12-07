@@ -8,6 +8,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.text.Editable;
@@ -20,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -43,12 +45,13 @@ public class MainActivity extends AppCompatActivity {
     private static final String SHARED_PREF_USER_INFO_BEST_SCORE = "SHARED_PREF_USER_INFO_BEST_SCORE";
 
     private TextView mGreetingTextView;
-    private TextView mUserName;
-    private TextView mUserBestScore;
-    private EditText mNameEditText;
+    private Button mEditUserButton;
+    private TextView mChangeUserTextView;
+    private ImageButton mLeaderboardButton;
     private Button mPlayButton;
-    private Button mRestartButton;
+    private Spinner mUserSpinner;
     private Spinner mSpinnerLangues;
+
 
     private DBOpenHelper dbOpenHelper;
 
@@ -64,24 +67,45 @@ public class MainActivity extends AppCompatActivity {
 
         //dbOpenHelper.insertUser("b", "2021-11-07");
 
-        User user = dbOpenHelper.getLastUser();
+        mUser = dbOpenHelper.getLastUser();
 
-        if(user == null){
-            Intent intent = new Intent(this, CreateUser.class);
+        if(mUser == null){
+            Intent intent = new Intent(getBaseContext(), CreateUser.class);
             startActivity(intent);
         }
 
-        setContentView(R.layout.activity_main);
+
+        setContentView(R.layout.main_screen_with_user);
 
         setScreenCenter();
 
         mGreetingTextView = findViewById(R.id.main_textview_bienvenu);
-        mNameEditText = findViewById(R.id.main_edittext_nom);
+        mEditUserButton = findViewById(R.id.edit_user_button);
         mPlayButton = findViewById(R.id.main_button_play);
-        mUserName = findViewById(R.id.main_textView_name);
-        mUserBestScore = findViewById(R.id.main_textview_score);
-        mRestartButton = findViewById(R.id.main_button_restartProfile);
+        mChangeUserTextView = findViewById(R.id.not_user_text);
+        mLeaderboardButton = findViewById(R.id.leaderboardButton);
+        mUserSpinner = findViewById(R.id.user_spinner);
         mSpinnerLangues = findViewById(R.id.spinner_langues);
+
+        updateUserName();
+
+        ArrayList<String> userList = dbOpenHelper.getAllUsers();
+
+        mUserSpinner.setAdapter(new ArrayAdapter<>(this,R.layout.spinner_item, userList));
+        mUserSpinner.setSelection(userList.indexOf(mUser.getUsername()));
+
+        mUserSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Adapter adapter = parent.getAdapter();
+                String user = (String) adapter.getItem(position);
+
+                if (user != mUser.getUsername()) return;
+
+                mUser = dbOpenHelper.getUser(user);
+
+            }
+            @Override public void onNothingSelected(AdapterView<?> parent) { }
+        });
 
         mSpinnerLangues.setAdapter(new ArrayAdapter<>(this,R.layout.spinner_item,langues));
         String langueSave=getSharedPreferences(SHARED_PREF_USER_INFO, MODE_PRIVATE).getString(SHARED_PREF_USER_INFO_LANGUAGE, null);
@@ -113,18 +137,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        mUser = new User();
-        sameUser();
-
         mPlayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String name = mNameEditText.getText().toString();
-                getSharedPreferences(SHARED_PREF_USER_INFO, MODE_PRIVATE)
-                        .edit()
-                        .putString(SHARED_PREF_USER_INFO_NAME, name)
-                        .apply();
-                mUser.setUsername(name);
 
                 ArrayList<Class> activityClasses = new ArrayList<>();
                 activityClasses.add(QuestionTableauActivity.class);
@@ -138,13 +153,15 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, QuestionBank.getCurrentQuestion());
                 intent.putExtra(UtilGame.KEY_CURRENT_TIME, "" + 0);
                 startActivity(intent);
-
             }
         });
 
-        mRestartButton.setOnClickListener(new View.OnClickListener() {
+        mEditUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //TODO
+                /*
+
                 getSharedPreferences(SHARED_PREF_USER_INFO, MODE_PRIVATE)
                         .edit()
                         .putString(SHARED_PREF_USER_INFO_NAME, "")
@@ -154,6 +171,17 @@ public class MainActivity extends AppCompatActivity {
                         .putInt(SHARED_PREF_USER_INFO_BEST_SCORE, 0)
                         .apply();
                 sameUser();
+
+                */
+            }
+        });
+
+        mLeaderboardButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity.this, LeaderboardActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -185,8 +213,13 @@ public class MainActivity extends AppCompatActivity {
             rs.close();
         }
         */
-        mGreetingTextView.setText("AA test user :"+user.getUsername());
     }
+
+    protected void updateUserName() {
+        mGreetingTextView.setText(getString(R.string.Welcome_back_name, mUser.getUsername()));
+        mChangeUserTextView.setText(getString(R.string.main_not_user, mUser.getUsername()));
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

@@ -37,6 +37,9 @@
             android:name=".controller.LeaderboardActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="false" />
+        <activity android:name=".controller.CreateUser"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:exported="false" />
         <activity
             android:name=".controller.MainActivity"
             android:exported="true">

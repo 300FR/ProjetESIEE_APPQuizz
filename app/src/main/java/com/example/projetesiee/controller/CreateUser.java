@@ -2,6 +2,7 @@ package com.example.projetesiee.controller;
 
 import static java.util.Collections.shuffle;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -49,6 +50,7 @@ public class CreateUser extends AppCompatActivity {
                 String myFormat = "yy/MM/dd";
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
                 mBirthday.setText(sdf.format(myCalendar.getTime()));
+                mBirthday.setError(null);
             }
         };
 

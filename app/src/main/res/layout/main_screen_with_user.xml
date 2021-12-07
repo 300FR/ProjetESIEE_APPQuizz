@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/main_button_play2"
+        android:id="@+id/main_button_play"
         android:layout_width="135dp"
         android:layout_height="54dp"
         android:layout_gravity="center_horizontal"
@@ -29,7 +29,7 @@
         app:layout_constraintTop_toBottomOf="@+id/frameLayout2">
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/not_user_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -38,10 +38,10 @@
             android:textAlignment="center"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+            app:layout_constraintTop_toBottomOf="@+id/Welcome_back" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/Welcome_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -50,21 +50,21 @@
             android:text="@string/Welcome_back_name"
             android:textAlignment="center"
             android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/button2"
+            app:layout_constraintEnd_toStartOf="@+id/edit_user_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/edit_user_button"
             android:layout_width="81dp"
             android:layout_height="62dp"
             android:layout_marginStart="32dp"
             android:text="@string/button_edit_user_info"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView5"
-            app:layout_constraintStart_toEndOf="@+id/textView5" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/Welcome_back"
+            app:layout_constraintStart_toEndOf="@+id/Welcome_back" />
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/leaderboardButton"
             android:layout_width="67dp"
             android:layout_height="63dp"
             android:layout_marginTop="32dp"
@@ -73,21 +73,21 @@
             android:scaleType="fitCenter"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/button2"
+            app:layout_constraintStart_toEndOf="@+id/edit_user_button"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/leaderboard_icon"
             tools:ignore="ImageContrastCheck" />
 
         <Spinner
-            android:id="@+id/spinner3"
+            android:id="@+id/user_spinner"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_marginStart="52dp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView8"
+            app:layout_constraintBottom_toBottomOf="@+id/not_user_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/textView8"
-            app:layout_constraintTop_toTopOf="@+id/textView8"
+            app:layout_constraintStart_toEndOf="@+id/not_user_text"
+            app:layout_constraintTop_toTopOf="@+id/not_user_text"
             app:layout_constraintVertical_bias="0.452" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
