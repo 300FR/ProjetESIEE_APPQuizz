@@ -93,6 +93,10 @@ public class CreateUser extends AppCompatActivity {
             mBirthday.setError("Required");
             check = false;
         }
+        if(dbOpenHelper.getUser(mUserName.getText().toString())!=null){
+            mUserName.setError("Duplicate");
+            check = false;
+        }
         return check;
     }
 
