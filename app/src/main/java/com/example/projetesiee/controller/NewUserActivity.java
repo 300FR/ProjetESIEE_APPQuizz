@@ -10,19 +10,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.projetesiee.R;
 
-public class Welcome extends AppCompatActivity {
+public class NewUserActivity extends AppCompatActivity {
     private Button mCreateButton;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_screen_new_user);
+        setContentView(R.layout.activity_new_user);
         mCreateButton = findViewById(R.id.welcome_create_user_button);
 
         mCreateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Welcome.this, CreateUser.class);
+                Intent intent = new Intent(NewUserActivity.this, CreateUserActivity.class);
                 startActivity(intent);
             }
         });

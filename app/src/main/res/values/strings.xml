@@ -24,4 +24,36 @@
     <string name="delete_user">Delete user</string>
     <string name="required">Required</string>
     <string name="already_taken">Already taken </string>
+
+    <string name="question_music_1">What is the title of this music by Michael Jackson?</string>
+    <string name="question_music_1_A">Smooth Criminal</string>
+    <string name="question_music_1_B">Billie Jean</string>
+    <string name="question_music_1_C">Beat It</string>
+    <string name="question_music_1_D">Thriller</string>
+
+    <string name="question_music_2">From which film does this music come from?</string>
+    <string name="question_music_2_A">Gladiator</string>
+    <string name="question_music_2_B">Terminator</string>
+    <string name="question_music_2_C">Indiana Jones</string>
+    <string name="question_music_2_D">The Lord of The Rings</string>
+
+    <string name="question_map">Country to find: %1$s</string>
+    <string name="country_name_1">Cuba</string>
+    <string name="country_name_2">Gabon</string>
+    <string name="country_name_3">Congo</string>
+    <string name="country_name_4">Alaska</string>
+
+    <string name="success_mission">Well done it\'s a success !\n%1$s</string>
+    <string name="success_temps">Your final time is: %1$s</string>
+    <string name="success_back">Go back to main</string>
+
+    <string name="bombe_jaune">yellow</string>
+    <string name="bombe_vert">green</string>
+    <string name="bombe_rouge">red</string>
+    <string name="bombe_bleu">blue</string>
+
+    <string name="cadenas_eq">For the last digit : [%1$s+3*%2$s-(-1)*e(iπ)*56/(1+%3$s)]</string>
+    <string name="cadenas_fil">For the last digit :\nWhat was the position to cut the wire %1$s ?</string>
+    <string name="cadenas_trois">\nFor the first three digits:\n Look at the clock !</string>
+
 </resources>

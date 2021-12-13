@@ -33,7 +33,6 @@ public class QuestionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_question_music);
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Intent intent = getIntent();
@@ -52,14 +51,20 @@ public class QuestionActivity extends AppCompatActivity {
 
     protected void startTimer(){
         startTime = Long.parseLong(getIntent().getStringExtra(UtilGame.KEY_CURRENT_TIME));
+        beginTimer();
+    }
+
+    private void beginTimer() {
         currentTime=(int)startTime;
-        minuteur = new Timer(); TimerTask taskTime = new TimerTask() {@Override public void run() {
+        minuteur = new Timer();
+        TimerTask taskTime = new TimerTask() {@Override public void run() {
             runOnUiThread(new Runnable() { @Override public void run() {
                 runInTimer();
             } });
         }};
         minuteur.scheduleAtFixedRate(taskTime,startTime,delay);
     }
+
 
     protected void runInTimer(){
         currentTimeText=UtilGame.displayTime((int)startTime+ currentTime++);
@@ -80,6 +85,16 @@ public class QuestionActivity extends AppCompatActivity {
         super.onStop();
         if (minuteur!=null){
             minuteur.cancel(); minuteur.purge();
+            minuteur=null;
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (minuteur==null){
+            startTime=currentTime;
+            beginTimer();
         }
     }
 

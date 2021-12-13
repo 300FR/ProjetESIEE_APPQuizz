@@ -34,7 +34,6 @@ import java.util.TimerTask;
 public class QuestionCadenasActivity extends QuestionActivity{
 
     private Cadenas cadenas;
-    public boolean temp=false;
     private TextView indications;
 
     @SuppressLint("ClickableViewAccessibility")
@@ -58,11 +57,11 @@ public class QuestionCadenasActivity extends QuestionActivity{
         int choice = new Random().nextInt(2);
         if (code_0==-1 || choice==0){
             code_0= new Random().nextInt(10);;
-            indic+="Pour le dernier chiffre : ["+(2+code_0)+"+3*"+(4+code_0)+"-(-1)*e(iπ)*56/(1+"+(3+code_0)+")]";
+            indic+=getString(R.string.cadenas_eq,""+(2+code_0),""+(4+code_0),""+(3+code_0));
         }else{
-            indic+="Pour le dernier chiffre : \nA quelle position fallait-il couper le fil: " +text_0;
+            indic+=getString(R.string.cadenas_fil,text_0);
         }
-        indic+="\nPour les trois premiers:\n Regardez le chrono !";
+        indic+=getString(R.string.cadenas_trois);
         this.indications.setText(indic);
 
 

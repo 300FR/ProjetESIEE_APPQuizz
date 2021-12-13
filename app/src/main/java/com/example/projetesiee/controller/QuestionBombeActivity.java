@@ -85,12 +85,12 @@ public class QuestionBombeActivity extends QuestionActivity {
 
 
         nameWires=new HashMap<>();
-        nameWires.put(R.id.bombe_red_wire,"rouge");
-        nameWires.put(R.id.bombe_green_wire,"vert");
-        nameWires.put(R.id.bombe_yellow_wire,"jaune");
-        nameWires.put(R.id.bombe_blue_wire,"bleu");
+        nameWires.put(R.id.bombe_red_wire,getString(R.string.bombe_rouge));
+        nameWires.put(R.id.bombe_green_wire,getString(R.string.bombe_vert));
+        nameWires.put(R.id.bombe_yellow_wire,getString(R.string.bombe_jaune));
+        nameWires.put(R.id.bombe_blue_wire,getString(R.string.bombe_bleu));
 
-        fils = new ArrayList<View>();
+        fils = new ArrayList<>();
         this.fils.add(this.filRouge);
         this.fils.add(this.filBleu);
         this.fils.add(this.filJaune);
@@ -238,14 +238,14 @@ public class QuestionBombeActivity extends QuestionActivity {
 
     private void setOrderWires(){
         orderedWires= new Stack<>();
-        String textForInstruction="";
+        String textForInstruction=new String();
         int index=0;
         for (View v : fils){
             textForInstruction+="/"+nameWires.get(fils.get(fils.size()-1-index++).getId());
             orderedWires.add(v);
         }
         index=(new Random()).nextInt(fils.size());
-        super.dataForLastQuestion=""+nameWires.get(fils.get(index).getId())+SEPARATOR+index;
+        super.dataForLastQuestion=nameWires.get(fils.get(index).getId())+SEPARATOR+index;
         this.instruction.setText(textForInstruction.substring(1));
     }
 }

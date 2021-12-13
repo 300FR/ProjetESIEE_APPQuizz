@@ -2,7 +2,6 @@ package com.example.projetesiee.controller;
 
 import static java.util.Collections.shuffle;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,7 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class CreateUser extends AppCompatActivity {
+public class CreateUserActivity extends AppCompatActivity {
     private EditText mUserName;
     private EditText mBirthday;
     private Button mCreateButton;
@@ -33,7 +32,7 @@ public class CreateUser extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         dbOpenHelper = new DBOpenHelper(getBaseContext());
 
-        setContentView(R.layout.main_create_user);
+        setContentView(R.layout.activity_create_user);
 
         final Calendar myCalendar = Calendar.getInstance();
 
@@ -57,7 +56,7 @@ public class CreateUser extends AppCompatActivity {
         mBirthday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(CreateUser.this, date, myCalendar
+                new DatePickerDialog(CreateUserActivity.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
@@ -73,7 +72,7 @@ public class CreateUser extends AppCompatActivity {
 
                     dbOpenHelper.insertUser(username, birthday);
 
-                    Intent intent = new Intent(CreateUser.this, MainActivity.class);
+                    Intent intent = new Intent(CreateUserActivity.this, MainActivity.class);
                     startActivity(intent);
                 }
 

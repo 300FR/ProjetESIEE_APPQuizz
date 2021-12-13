@@ -24,28 +24,18 @@ import java.util.TimerTask;
 public class QuestionMusicActivity extends QuestionActivity implements View.OnClickListener {
 
     public static final String BUNDLE_EXTRA_SCORE = "BUNDLE_EXTRA_SCORE";
-    private static final String BUNDLE_STATE_SCORE = "BUNDLE_STATE_SCORE";
-    private static final String BUNDLE_STATE_QUESTION_COUNT = "BUNDLE_STATE_QUESTION_COUNT";
-    private static final String BUNDLE_STATE_QUESTION_BANK = "BUNDLE_STATE_QUESTION_BANK";
-    private static final int LENGTH_SHORT=1200;
-    private static final int LENGTH_LONG=2500;
-    private static final String CLE_QUESTION_ORDER = "CLE_QUESTION_ORDER";
-    private static final String CLE_QUESTION_INDEX = "CLE_QUESTION_INDEX";
-    private static final String CLE_SCORE = "CLE_SCORE";
-
 
     private TextView mQuestionTextView;
     private Button mAButton;
     private Button mBButton;
     private Button mCButton;
     private Button mDButton;
-    private boolean mEnableTouchEvents=true;
     private SeekBar seekBar;
     private MediaPlayer mediaPlayer;
     private Timer seekBarTimer = new Timer();
     private final int RATIO_MEDIAPLAYER_SEEKBAR=1000;
-    private int musicID;
     private QuestionText questionText;
+    private boolean PauseHasBeenMade=false;
 
 
 
@@ -54,10 +44,10 @@ public class QuestionMusicActivity extends QuestionActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_music);
 
-        musicID = getRandomMusic();
+        int musicID = getRandomMusic();
 
         mediaPlayer = new MediaPlayer();
-        mediaPlayer = MediaPlayer.create(getApplicationContext(),musicID);
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), musicID);
 
         seekBar=findViewById(R.id.music_question_seekBar);
 
@@ -128,12 +118,6 @@ public class QuestionMusicActivity extends QuestionActivity implements View.OnCl
         mDButton.setText(l.get(3));
         mQuestionTextView.setText(questionText.getQuestion());
     }
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        return mEnableTouchEvents && super.dispatchTouchEvent(ev);
-    }
-
     @Override
     public void onClick(View v) {
         int index;
@@ -167,21 +151,36 @@ public class QuestionMusicActivity extends QuestionActivity implements View.OnCl
         }
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             mediaPlayer.pause();
-            mediaPlayer.release();
         }
+        PauseHasBeenMade=true;
         super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        if (PauseHasBeenMade) {
+            setSeekBar();
+            setSeekBarTimer();
+            mediaPlayer.start();
+        }
+        PauseHasBeenMade=false;
+        super.onResume();
     }
 
     private String getQuestion(int id){
         switch (id){
             case R.raw.billie_jean:
-                return "Quel est le titre de ce clip de Michael Jackson?"+SEPARATOR+
-                        "Smooth Criminal"+SEPARATOR+"Billie Jean"+SEPARATOR+
-                        "Beat It"+SEPARATOR+"Thriller"+SEPARATOR+"1";
+                return getString(R.string.question_music_1)+SEPARATOR+
+                        getString(R.string.question_music_1_A)+SEPARATOR+
+                        getString(R.string.question_music_1_B)+SEPARATOR+
+                        getString(R.string.question_music_1_C)+SEPARATOR+
+                        getString(R.string.question_music_1_D)+SEPARATOR+"1";
             case R.raw.lotr:
-                return "De quel film célèbre provient cette musique ?"+SEPARATOR+
-                        "Gladiator"+SEPARATOR+"Terminator"+SEPARATOR+
-                        "Indiana Jones"+SEPARATOR+"Le Seigneur des Anneaux"+SEPARATOR+"3";
+                return getString(R.string.question_music_2)+SEPARATOR+
+                        getString(R.string.question_music_2_A)+SEPARATOR+
+                        getString(R.string.question_music_2_B)+SEPARATOR+
+                        getString(R.string.question_music_2_C)+SEPARATOR+
+                        getString(R.string.question_music_2_D)+SEPARATOR+"3";
             default:
                 return null;
         }

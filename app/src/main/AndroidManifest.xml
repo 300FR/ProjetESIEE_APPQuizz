@@ -37,10 +37,10 @@
             android:name=".controller.LeaderboardActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="false" />
-        <activity android:name=".controller.CreateUser"
+        <activity android:name=".controller.CreateUserActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="false" />
-        <activity android:name=".controller.Welcome"
+        <activity android:name=".controller.NewUserActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="false" />
         <activity

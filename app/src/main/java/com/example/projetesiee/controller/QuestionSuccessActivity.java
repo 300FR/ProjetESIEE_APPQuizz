@@ -16,23 +16,21 @@ import com.example.projetesiee.model.UtilGame;
 
 public class QuestionSuccessActivity extends AppCompatActivity {
 
-    private Button backMain;
-    private TextView textBravo;
     private int time;
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_success);
 
-        backMain=findViewById(R.id.success_back_button);
-        textBravo=findViewById(R.id.success_bravo);
+        Button backMain = findViewById(R.id.success_back_button);
+        TextView textBravo = findViewById(R.id.success_bravo);
 
         time = (int) Long.parseLong(getIntent().getStringExtra(UtilGame.KEY_CURRENT_TIME));
 
-        textBravo.setText("Bravo vous avez réussi !\n " +
-                "Votre temps final est : "+UtilGame.displayTime(time));
+        textBravo.setText(getString(R.string.success_mission,
+                getString(R.string.success_temps,UtilGame.displayTime(time))));
+        backMain.setText(getString(R.string.success_back));
 
         backMain.setOnClickListener(new View.OnClickListener() {
             @Override

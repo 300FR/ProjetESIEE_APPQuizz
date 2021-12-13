@@ -36,9 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String SHARED_PREF_USER_INFO = "SHARED_PREF_USER_INFO";
     private static final String SHARED_PREF_USER_INFO_LANGUAGE = "SHARED_PREF_LANGUAGE";
-    private static final String SHARED_PREF_USER_INFO_NAME = "SHARED_PREF_USER_INFO_NAME";
     private static final String SHARED_PREF_USER_INFO_SCORE = "SHARED_PREF_USER_INFO_SCORE";
-    private static final String SHARED_PREF_USER_INFO_BEST_SCORE = "SHARED_PREF_USER_INFO_BEST_SCORE";
 
     private TextView mGreetingTextView;
     private Button mCreateUserButton;
@@ -52,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
     private DBOpenHelper dbOpenHelper;
 
-    private final String[] langues = {"en","fr","us"};
+    private final String[] langues = {"en","fr"};
 
     private User mUser;
 
@@ -61,21 +59,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         dbOpenHelper = new DBOpenHelper(getBaseContext());
-
-        //dbOpenHelper.insertUser("b", "2021-11-07");
-
         mUser = dbOpenHelper.getLastUser();
 
         if(mUser == null){
-            Intent intent = new Intent(MainActivity.this, Welcome.class);
+            Intent intent = new Intent(MainActivity.this, NewUserActivity.class);
             startActivity(intent);
             this.finish();
             return;
         }
-
-
-        setContentView(R.layout.main_screen_with_user);
-
+        setContentView(R.layout.activity_main);
         setScreenCenter();
 
         mGreetingTextView = findViewById(R.id.Welcome_back);
@@ -88,7 +80,42 @@ public class MainActivity extends AppCompatActivity {
         mSpinnerLangues = findViewById(R.id.spinner_langues);
 
         updateUserNameWithSelection();
+        setSpinners();
+        SetPlayButton();
+        SetButtons();
+    }
 
+    private void SetButtons() {
+        mCreateUserButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CreateUserActivity.class);
+                startActivity(intent);
+            }
+        });
+        mDeleteUserButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dbOpenHelper.deleteUser(mUser);
+                mUser = dbOpenHelper.getLastUser();
+                if(mUser == null){
+                    Intent intent = new Intent(MainActivity.this, NewUserActivity.class);
+                    startActivity(intent);
+                    return;
+                }
+                updateUserNameWithSelection();
+            }
+        });
+        mLeaderboardButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, LeaderboardActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void setSpinners() {
         mUserSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Adapter adapter = parent.getAdapter();
@@ -130,8 +157,9 @@ public class MainActivity extends AppCompatActivity {
             }
             @Override public void onNothingSelected(AdapterView<?> parent) { }
         });
+    }
 
-
+    private void SetPlayButton() {
         mPlayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,71 +178,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        mCreateUserButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO
-
-                Intent intent = new Intent(MainActivity.this, CreateUser.class);
-                startActivity(intent);
-                /*
-
-                getSharedPreferences(SHARED_PREF_USER_INFO, MODE_PRIVATE)
-                        .edit()
-                        .putString(SHARED_PREF_USER_INFO_NAME, "")
-                        .apply();
-                getSharedPreferences(SHARED_PREF_USER_INFO, MODE_PRIVATE)
-                        .edit()
-                        .putInt(SHARED_PREF_USER_INFO_BEST_SCORE, 0)
-                        .apply();
-                sameUser();
-
-                */
-            }
-        });
-        mDeleteUserButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dbOpenHelper.deleteUser(mUser);
-                mUser = dbOpenHelper.getLastUser();
-                if(mUser == null){
-                    Intent intent = new Intent(MainActivity.this, Welcome.class);
-                    startActivity(intent);
-                    return;
-                }
-                updateUserNameWithSelection();
-            }
-        });
-        mLeaderboardButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, LeaderboardActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
-        /*
-        ArrayList array_list = dbOpenHelper.getAllCotacts();
-        ArrayAdapter arrayAdapter=new ArrayAdapter(this,android.R.layout.simple_list_item_1, array_list);
-
-        //dbOpenHelper.insertContact("coco","06","lol@","4bis","paris");
-
-        Cursor rs = dbOpenHelper.getData(0);
-        rs.moveToFirst();
-        
-        String nam = rs.getString(rs.getColumnIndex(DBOpenHelper.CONTACTS_COLUMN_NAME));
-        String phon = rs.getString(rs.getColumnIndex(DBOpenHelper.CONTACTS_COLUMN_PHONE));
-        String emai = rs.getString(rs.getColumnIndex(DBOpenHelper.CONTACTS_COLUMN_EMAIL));
-        String stree = rs.getString(rs.getColumnIndex(DBOpenHelper.CONTACTS_COLUMN_STREET));
-        String plac = rs.getString(rs.getColumnIndex(DBOpenHelper.CONTACTS_COLUMN_CITY));
-
-        if (!rs.isClosed())  {
-            rs.close();
-        }
-        */
     }
+
     protected void updateUserNameWithSelection() {
         mUserSpinner.setSelection(updateUserName().indexOf(mUser.getUsername()));
     }
@@ -251,7 +216,6 @@ public class MainActivity extends AppCompatActivity {
                     .edit()
                     .putInt(SHARED_PREF_USER_INFO_SCORE, score)
                     .apply();
-            //sameUser();
         }
     }
 
@@ -264,34 +228,6 @@ public class MainActivity extends AppCompatActivity {
         if (index==langues.length) index=0;
         return index;
     }
-/*
-    private void sameUser() {
-        String firstName = getSharedPreferences(SHARED_PREF_USER_INFO, MODE_PRIVATE).getString(SHARED_PREF_USER_INFO_NAME, null);
-        int score = getSharedPreferences(SHARED_PREF_USER_INFO, MODE_PRIVATE).getInt(SHARED_PREF_USER_INFO_SCORE, -1);
-        int bestScore=getSharedPreferences(SHARED_PREF_USER_INFO, MODE_PRIVATE).getInt(SHARED_PREF_USER_INFO_BEST_SCORE, 0);
-
-        if (firstName!=null && !firstName.isEmpty()) {
-            if (score != -1) {
-                mGreetingTextView.setText(getString(R.string.main_welcome_name) +" "+ firstName +" "+ getString(R.string.main_welcome_score) +" "+ score);
-                if (bestScore<score){
-                    bestScore=score;
-                    getSharedPreferences(SHARED_PREF_USER_INFO, MODE_PRIVATE).edit()
-                            .putInt(SHARED_PREF_USER_INFO_BEST_SCORE, score).apply();
-                }
-            } else {
-                mGreetingTextView.setText(getString(R.string.main_welcome_name) +" "+ firstName);
-            }
-            mNameEditText.setSelection(mNameEditText.getText().length());
-            mPlayButton.setEnabled(true);
-        }else{
-            firstName="";
-            mPlayButton.setEnabled(false);
-            mGreetingTextView.setText(getString(R.string.main_welcome));
-        }
-        mNameEditText.setText(firstName);
-        mUserBestScore.setText(""+bestScore);
-        mUserName.setText(firstName);
-    }*/
 
     private void setScreenCenter(){
         Display display = ((WindowManager) this
@@ -302,9 +238,4 @@ public class MainActivity extends AppCompatActivity {
         UtilGame.centerWidth=size.x/2;
         UtilGame.centerHeight=size.y/2;
     }
-
-    private void updateUserScore(User user){
-        dbOpenHelper.updateUser(user);
-    }
-
 }

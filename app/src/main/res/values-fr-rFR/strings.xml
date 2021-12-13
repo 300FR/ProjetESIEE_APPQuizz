@@ -24,4 +24,35 @@
     <string name="delete_user">Supprimer profil</string>
     <string name="required">Obligatoire</string>
     <string name="already_taken">Déjà pris</string>
+
+    <string name="question_music_1">Quel est le titre de ce clip de Michael Jackson?</string>
+    <string name="question_music_1_A">Smooth Criminal</string>
+    <string name="question_music_1_B">Billie Jean</string>
+    <string name="question_music_1_C">Beat It</string>
+    <string name="question_music_1_D">Thriller</string>
+
+    <string name="question_music_2">De quel film célèbre provient cette musique ?</string>
+    <string name="question_music_2_A">Gladiator</string>
+    <string name="question_music_2_B">Terminator</string>
+    <string name="question_music_2_C">Indiana Jones</string>
+    <string name="question_music_2_D">Le Seigneur des Anneaux</string>
+
+    <string name="question_map">Pays Recherché: %1$s</string>
+    <string name="country_name_1">Cuba</string>
+    <string name="country_name_2">Gabon</string>
+    <string name="country_name_3">Congo</string>
+    <string name="country_name_4">Alaska</string>
+
+    <string name="success_mission">Bravo vous avez réussi !\n%1$s</string>
+    <string name="success_temps">Votre temps final est : %1$s</string>
+    <string name="success_back">Retour au menu</string>
+
+    <string name="bombe_jaune">jaune</string>
+    <string name="bombe_vert">vert</string>
+    <string name="bombe_rouge">rouge</string>
+    <string name="bombe_bleu">bleu</string>
+
+    <string name="cadenas_eq">Pour le dernier chiffre : [%1$s+3*%2$s-(-1)*e(iπ)*56/(1+%3$s)]</string>
+    <string name="cadenas_fil">Pour le dernier chiffre :\nA quelle position fallait-il couper le fil %1$s ?</string>
+    <string name="cadenas_trois">\nPour les trois premiers:\n Regardez le chrono !</string>
 </resources>
