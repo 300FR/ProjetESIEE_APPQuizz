@@ -102,7 +102,7 @@ public class QuestionActivity extends AppCompatActivity {
 
     protected void GoBackToMain(Context actual){
         Intent intent = new Intent(actual, MainActivity.class);
-        intent.putExtra(UtilGame.KEY_RETURN_TO_MAIN,true);
+        intent.putExtra(UtilGame.KEY_RETURN_TO_MAIN,false);
         startActivity(intent);
     }
 }

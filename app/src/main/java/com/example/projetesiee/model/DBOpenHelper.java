@@ -43,8 +43,8 @@ public class DBOpenHelper extends SQLiteOpenHelper {
     }
 
 
-    public HashMap<String,String> getLeaderboard(){
-        HashMap<String,String> map = new HashMap<>();
+    public ArrayList<Object[]> getLeaderboard(){
+        ArrayList<Object[]> list = new ArrayList<>();
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res =  db.rawQuery( "select * from "+USER_TABLE_NAME, null );
@@ -53,14 +53,16 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         int bestScoreIndex = res.getColumnIndex(USER_COLUMN_BEST_SCORE);
         int usernameIndex = res.getColumnIndex(USER_COLUMN_USERNAME);
         while(!res.isAfterLast()){
-            map.put(
-                    res.getString(bestScoreIndex),
-                    res.getString(usernameIndex)
-            );
+            if (res.getInt(bestScoreIndex)!=0){
+                list.add(new Object[]{
+                        res.getString(usernameIndex),
+                        res.getInt(bestScoreIndex)}
+                );
+            }
             res.moveToNext();
         }
         res.close();
-        return map;
+        return list;
     }
 
     public boolean insertUser (String username, String birthday) {

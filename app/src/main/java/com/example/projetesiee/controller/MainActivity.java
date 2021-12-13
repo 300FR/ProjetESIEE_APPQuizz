@@ -87,17 +87,17 @@ public class MainActivity extends AppCompatActivity {
         mUserSpinner = findViewById(R.id.user_spinner);
         mSpinnerLangues = findViewById(R.id.spinner_langues);
 
-        updateUserName();
+        updateUserNameWithSelection();
 
         mUserSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Adapter adapter = parent.getAdapter();
                 String user = (String) adapter.getItem(position);
 
-                if (user == mUser.getUsername()) return;
+                if (user.equals(mUser.getUsername())) return;
 
                 mUser = dbOpenHelper.getUser(user);
-                updateUserName();
+                updateUserNameWithSelection();
             }
             @Override public void onNothingSelected(AdapterView<?> parent) { }
         });
@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                     return;
                 }
-                updateUserName();
+                updateUserNameWithSelection();
             }
         });
         mLeaderboardButton.setOnClickListener(new View.OnClickListener() {
@@ -215,14 +215,29 @@ public class MainActivity extends AppCompatActivity {
         }
         */
     }
+    protected void updateUserNameWithSelection() {
+        mUserSpinner.setSelection(updateUserName().indexOf(mUser.getUsername()));
+    }
 
-    protected void updateUserName() {
+
+    protected  ArrayList<String> updateUserName() {
         mGreetingTextView.setText(getString(R.string.Welcome_back_name, mUser.getUsername()));
         mChangeUserTextView.setText(getString(R.string.main_not_user, mUser.getUsername()));
         ArrayList<String> userList = dbOpenHelper.getAllUsers();
-
         mUserSpinner.setAdapter(new ArrayAdapter<>(this,R.layout.spinner_item, userList));
-        mUserSpinner.setSelection(userList.indexOf(mUser.getUsername()));
+        return userList;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Intent intent = getIntent();
+        Boolean gameSucceed=intent.getBooleanExtra(UtilGame.KEY_RETURN_TO_MAIN,false);
+        if (gameSucceed){
+            int score = intent.getIntExtra(UtilGame.KEY_CURRENT_TIME,0);
+            mUser.setScore(score);
+            dbOpenHelper.updateUser(mUser);
+        }
     }
 
     @Override
@@ -237,7 +252,6 @@ public class MainActivity extends AppCompatActivity {
                     .putInt(SHARED_PREF_USER_INFO_SCORE, score)
                     .apply();
             //sameUser();
-
         }
     }
 

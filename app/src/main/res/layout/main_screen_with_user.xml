@@ -5,120 +5,126 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/main_button_play"
-        android:layout_width="135dp"
-        android:layout_height="54dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="16dp"
-        android:layout_marginBottom="296dp"
-        android:text="@string/go"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="64dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="fill_parent"
-        android:layout_height="326dp"
-        android:layout_marginTop="2dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout2">
-
-        <TextView
-            android:id="@+id/not_user_text"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="84dp"
-            android:text="@string/main_not_user"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Welcome_back" />
+            android:layout_margin="10dp">
 
-        <TextView
-            android:id="@+id/Welcome_back"
-            android:layout_width="wrap_content"
+            <Spinner
+                android:id="@+id/spinner_langues"
+                android:layout_width="121dp"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/settings"
+                android:spinnerMode="dropdown" />
+
+            <ImageButton
+                android:id="@+id/leaderboardButton"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="right"
+                android:layout_marginLeft="120dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/leaderboard_icon"
+                tools:ignore="ImageContrastCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="111dp"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/Welcome_back"
+                android:layout_width="344dp"
+                android:layout_height="60dp"
+                android:layout_margin="30dp"
+                android:gravity="center"
+                android:text="@string/Welcome_back_name"
+                android:textSize="30sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/Welcome_back_name"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/delete_user_button"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_gravity="center"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/delete_user_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/delete_user"
-            app:layout_constraintBaseline_toBaselineOf="@+id/Welcome_back"
-            app:layout_constraintStart_toEndOf="@+id/Welcome_back" />
+            <LinearLayout
+                android:layout_width="192dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <Button
-            android:id="@+id/create_user_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/create_user"
-            app:layout_constraintBaseline_toBaselineOf="@+id/not_user_text"
-            app:layout_constraintStart_toEndOf="@+id/user_spinner" />
+                <TextView
+                    android:id="@+id/not_user_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="39dp"
+                    android:layout_margin="10dp"
+                    android:text="@string/main_not_user"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
 
-        <ImageButton
-            android:id="@+id/leaderboardButton"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/delete_user_button"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/leaderboard_icon"
-            tools:ignore="ImageContrastCheck" />
+                <Spinner
+                    android:id="@+id/user_spinner"
+                    android:layout_width="172dp"
+                    android:layout_height="55dp"
+                    android:layout_margin="10dp" />
+            </LinearLayout>
 
-        <Spinner
-            android:id="@+id/user_spinner"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_marginStart="52dp"
-            app:layout_constraintBottom_toBottomOf="@+id/not_user_text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/not_user_text"
-            app:layout_constraintTop_toTopOf="@+id/not_user_text"
-            app:layout_constraintVertical_bias="0.452" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <LinearLayout
+                android:layout_width="198dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/frameLayout2"
-        android:layout_width="409dp"
-        android:layout_height="62dp"
-        android:layout_marginStart="2dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+                <Button
+                    android:id="@+id/create_user_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="61dp"
+                    android:layout_margin="5dp"
+                    android:text="@string/create_user" />
 
-        <Spinner
-            android:id="@+id/spinner_langues"
-            android:layout_width="64dp"
-            android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
-            android:contentDescription="@string/settings"
-            android:spinnerMode="dropdown"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <Button
+                    android:id="@+id/delete_user_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="64dp"
+                    android:layout_margin="5dp"
+                    android:text="@string/delete_user" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="222dp"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/main_button_play"
+                android:layout_width="135dp"
+                android:layout_height="54dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="40dp"
+                android:layout_marginBottom="296dp"
+                android:text="@string/go" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="305dp"
+            android:layout_gravity="right"
+            android:gravity="left"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

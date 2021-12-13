@@ -80,7 +80,7 @@
                 android:layout_weight="1"
                 android:padding="16dp"
                 android:text="A"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <Button
                 android:id="@+id/game_activity_button_2"
@@ -91,7 +91,7 @@
                 android:layout_weight="1"
                 android:padding="16dp"
                 android:text="B"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
         </TableRow>
 
         <TableRow
@@ -107,7 +107,7 @@
                 android:layout_weight="1"
                 android:padding="16dp"
                 android:text="C"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <Button
                 android:id="@+id/game_activity_button_4"
@@ -118,7 +118,7 @@
                 android:layout_weight="1"
                 android:padding="16dp"
                 android:text="D"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
         </TableRow>
 
     </TableLayout>

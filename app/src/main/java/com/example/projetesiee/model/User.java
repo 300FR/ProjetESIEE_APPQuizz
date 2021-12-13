@@ -36,7 +36,7 @@ public class User {
     }
     public void setScore(int score) {
         this.score = score;
-        if (bestScore < score) {
+        if (bestScore > score || bestScore==0) {
             bestScore = score;
         }
     }
