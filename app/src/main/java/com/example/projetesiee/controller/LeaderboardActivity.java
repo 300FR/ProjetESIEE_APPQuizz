@@ -53,36 +53,39 @@ public class LeaderboardActivity extends AppCompatActivity {
 
         dbOpenHelper = new DBOpenHelper(this);
         ArrayList<Object[]> list = dbOpenHelper.getLeaderboard();
-        ArrayList<String[]> dataSet= new ArrayList<>();
+        if(list.size()!=0){
+            ArrayList<String[]> dataSet= new ArrayList<>();
 
-        Collections.sort(list, new Comparator<Object[]>() {
-            public int compare(Object[] o1, Object[] o2) {
-                Integer x=(int)o1[1];
-                Integer y=(int)o2[1];
-                return x.compareTo(y);
+            Collections.sort(list, new Comparator<Object[]>() {
+                public int compare(Object[] o1, Object[] o2) {
+                    Integer x=(int)o1[1];
+                    Integer y=(int)o2[1];
+                    return x.compareTo(y);
+                }
+            });
+
+            for (int i=1;i<list.size();i++){
+                int time=(int)list.get(i)[1];
+                String displayTime=UtilGame.displayTime(time);
+                if (time==0)  displayTime="";
+                dataSet.add(new String[]{""+(i+1),""+list.get(i)[0], displayTime});
             }
-        });
 
-        for (int i=1;i<list.size();i++){
-            int time=(int)list.get(i)[1];
-            String displayTime=UtilGame.displayTime(time);
-            if (time==0)  displayTime="";
-            dataSet.add(new String[]{""+(i+1),""+list.get(i)[0], displayTime});
+            LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+            this.recyclerView.setLayoutManager(layoutManager);
+            recyclerView.setAdapter(new LeaderboardRecycleAdapter(dataSet));
+            layoutManager.scrollToPosition(0);
+
+            String[] tab = new String[]{"1",""+list.get(0)[0], UtilGame.displayTime((int)list.get(0)[1])};
+
+            View view = LayoutInflater.from(this.recyclerView.getContext())
+                    .inflate(R.layout.recycleview_leaderboard_item, this.recyclerView, false);
+            LeaderboardRecycleAdapter.ViewHolder firstHolder= new LeaderboardRecycleAdapter.ViewHolder(view);
+            firstHolder.getPositionView().setText(tab[0]);
+            firstHolder.getNameView().setText(tab[1]);
+            firstHolder.getBestTimeView().setText(tab[2]);
+            this.linearLayout.addView(view,1);
         }
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        this.recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(new LeaderboardRecycleAdapter(dataSet));
-        layoutManager.scrollToPosition(0);
-
-        String[] tab = new String[]{"1",""+list.get(0)[0], UtilGame.displayTime((int)list.get(0)[1])};
-
-        View view = LayoutInflater.from(this.recyclerView.getContext())
-                .inflate(R.layout.recycleview_leaderboard_item, this.recyclerView, false);
-        LeaderboardRecycleAdapter.ViewHolder firstHolder= new LeaderboardRecycleAdapter.ViewHolder(view);
-        firstHolder.getPositionView().setText(tab[0]);
-        firstHolder.getNameView().setText(tab[1]);
-        firstHolder.getBestTimeView().setText(tab[2]);
-        this.linearLayout.addView(view,1);
     }
 }
