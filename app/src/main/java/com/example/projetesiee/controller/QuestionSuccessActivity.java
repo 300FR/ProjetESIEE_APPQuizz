@@ -1,6 +1,5 @@
 package com.example.projetesiee.controller;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +10,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.projetesiee.R;
-import com.example.projetesiee.model.User;
 import com.example.projetesiee.model.UtilGame;
 
 public class QuestionSuccessActivity extends AppCompatActivity {

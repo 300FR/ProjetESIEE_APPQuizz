@@ -3,31 +3,18 @@ package com.example.projetesiee.model;
 import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
-import android.os.Bundle;
-import android.view.Window;
-import android.view.WindowManager;
-
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
-import com.example.projetesiee.R;
 import com.example.projetesiee.controller.QuestionMapsActivity;
-import com.example.projetesiee.controller.QuestionMusicActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.OnStreetViewPanoramaReadyCallback;
-import com.google.android.gms.maps.StreetViewPanorama;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 

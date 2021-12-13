@@ -1,25 +1,19 @@
 package com.example.projetesiee.controller;
 
 import static androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_IDLE;
-
 import static com.example.projetesiee.model.UtilGame.SEPARATOR;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.projetesiee.R;
 import com.example.projetesiee.model.Cadenas;
 import com.example.projetesiee.model.CadenasRecycleAdapter;
@@ -28,8 +22,6 @@ import com.example.projetesiee.model.UtilGame;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class QuestionCadenasActivity extends QuestionActivity{
 

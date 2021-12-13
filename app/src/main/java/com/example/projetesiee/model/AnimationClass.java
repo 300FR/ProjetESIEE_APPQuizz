@@ -2,9 +2,6 @@ package com.example.projetesiee.model;
 
 import android.graphics.Bitmap;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 public class AnimationClass {
     private Bitmap[] frames;
     private int currentFrame;

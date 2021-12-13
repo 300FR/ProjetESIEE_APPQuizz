@@ -3,30 +3,16 @@ package com.example.projetesiee.controller;
 import static androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_IDLE;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.MotionEvent;
-import android.view.ScaleGestureDetector;
-import android.view.SurfaceView;
-import android.view.View;
 import android.view.ViewParent;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TableRow;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,14 +20,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.projetesiee.R;
 import com.example.projetesiee.model.Cadenas;
 import com.example.projetesiee.model.TableauRecycleAdapter;
-import com.example.projetesiee.model.User;
-import com.example.projetesiee.model.UtilGame;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class QuestionTableauActivity extends QuestionActivity {
 

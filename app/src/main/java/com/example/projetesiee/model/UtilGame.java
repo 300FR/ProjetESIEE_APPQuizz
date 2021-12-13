@@ -1,10 +1,5 @@
 package com.example.projetesiee.model;
 
-import android.graphics.Bitmap;
-
-import java.util.Timer;
-import java.util.TimerTask;
-
 public class UtilGame {
 
     public static String KEY_CURRENT_TIME="KEY_CURRENT_TIME";

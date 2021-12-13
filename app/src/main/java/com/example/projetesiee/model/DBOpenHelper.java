@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 
 public class DBOpenHelper extends SQLiteOpenHelper {
 

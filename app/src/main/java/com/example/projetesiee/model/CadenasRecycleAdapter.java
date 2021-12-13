@@ -1,6 +1,5 @@
 package com.example.projetesiee.model;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +12,6 @@ import com.example.projetesiee.R;
 
 import java.util.ArrayList;
 
-/*
-File implemented by Olivier Troissant following the official android documentation
-Source: https://developer.android.com/guide/topics/ui/layout/recyclerview
- */
 
 public class CadenasRecycleAdapter extends RecyclerView.Adapter<CadenasRecycleAdapter.ViewHolder>{
 

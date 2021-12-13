@@ -1,10 +1,6 @@
 package com.example.projetesiee.model;
 
-import android.os.Debug;
 import android.util.Log;
-import android.widget.Toast;
-
-import com.example.projetesiee.R;
 
 import java.util.Random;
 

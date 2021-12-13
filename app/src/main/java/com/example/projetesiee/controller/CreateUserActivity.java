@@ -4,6 +4,7 @@ import static java.util.Collections.shuffle;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -30,6 +31,7 @@ public class CreateUserActivity extends AppCompatActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         dbOpenHelper = new DBOpenHelper(getBaseContext());
 
         setContentView(R.layout.activity_create_user);
