@@ -51,7 +51,6 @@ public class QuestionActivity extends AppCompatActivity {
 
     protected void startTimer(){
         startTime = Long.parseLong(getIntent().getStringExtra(UtilGame.KEY_CURRENT_TIME));
-        currentTime=(int)startTime;
         beginTimer();
     }
 
@@ -110,7 +109,7 @@ public class QuestionActivity extends AppCompatActivity {
         if (dataForLastQuestion!=null){
             intent.putExtra(actual.getClass().getName(),dataForLastQuestion);
         }
-        intent.putExtra(UtilGame.KEY_CURRENT_TIME, "" + currentTime);
+        intent.putExtra(UtilGame.KEY_CURRENT_TIME, "" + (currentTime+startTime));
         startActivity(intent);
     }
 
