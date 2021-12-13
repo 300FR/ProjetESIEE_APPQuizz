@@ -168,7 +168,8 @@ public class QuestionTableauActivity extends QuestionActivity {
 
             recyclerView.setAdapter(adapt);
 
-            layoutManager.scrollToPosition(100000000+this.cadenas.startingPosition[i]);
+            //layoutManager.scrollToPosition(100000000+this.cadenas.startingPosition[i]);
+            layoutManager.scrollToPosition(100000000+i+1);
         }
     }
 }
