@@ -94,7 +94,7 @@ public class CreateUser extends AppCompatActivity {
             check = false;
         }
         if(dbOpenHelper.getUser(mUserName.getText().toString())!=null){
-            mUserName.setError("Duplicate");
+            mUserName.setError("Name already taken");
             check = false;
         }
         return check;
