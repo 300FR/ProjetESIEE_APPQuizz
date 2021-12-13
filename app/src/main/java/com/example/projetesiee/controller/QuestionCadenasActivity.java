@@ -97,7 +97,7 @@ public class QuestionCadenasActivity extends QuestionActivity{
                                     case SCROLL_STATE_IDLE:
                                         if (cadenas.setCode(index,pos%numbers.size())){
                                             Intent intent = new Intent(QuestionCadenasActivity.this, QuestionSuccessActivity.class);
-                                            intent.putExtra(UtilGame.KEY_CURRENT_TIME, "" + startTime+currentTime);
+                                            intent.putExtra(UtilGame.KEY_CURRENT_TIME, "" + (startTime+currentTime));
                                             startActivity(intent);
                                         }
                                         recyclerView.removeOnScrollListener(this); break;

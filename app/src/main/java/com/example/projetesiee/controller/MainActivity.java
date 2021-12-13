@@ -132,15 +132,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mSpinnerLangues.setAdapter(new ArrayAdapter<>(this,R.layout.spinner_item,langues));
-        String langueSave=Locale.getDefault().getDisplayLanguage();
-        if (langueSave!=null) mSpinnerLangues.setSelection(getIndexLangue(langueSave));
+        String langueSave=getSharedPreferences(SHARED_PREF_USER_INFO, MODE_PRIVATE).getString(SHARED_PREF_USER_INFO_LANGUAGE,null);
+        if (langueSave==null) langueSave=Locale.getDefault().getLanguage();
+        mSpinnerLangues.setSelection(getIndexLangue(langueSave));
+        String finalLangueSave = langueSave;
 
         mSpinnerLangues.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Adapter adapter = parent.getAdapter();
                 String langue = (String) adapter.getItem(position);
-                String langueSave=getSharedPreferences(SHARED_PREF_USER_INFO, MODE_PRIVATE).getString(SHARED_PREF_USER_INFO_LANGUAGE, null);
-                if (langueSave!=null && langue.equals(langueSave)) return;
+                if (finalLangueSave !=null && langue.equals(finalLangueSave)) return;
 
                 Locale locale = new Locale(langue);
                 Locale.setDefault(locale);
