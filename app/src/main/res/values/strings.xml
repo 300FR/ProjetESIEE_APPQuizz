@@ -58,4 +58,6 @@
     <string name="main_create_new_user">Create new user</string>
     <string name="birthday">Birthday</string>
     <string name="delete_user">Delete user</string>
+    <string name="required">Required</string>
+    <string name="already_taken">Already taken </string>
 </resources>

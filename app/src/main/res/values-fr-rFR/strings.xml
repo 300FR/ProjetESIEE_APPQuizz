@@ -58,4 +58,6 @@
     <string name="main_create_new_user">Créer un nouveau profil</string>
     <string name="birthday">Date d\'anniversaire</string>
     <string name="delete_user">Supprimer profil</string>
+    <string name="required">Obligatoire</string>
+    <string name="already_taken">Déjà pris</string>
 </resources>

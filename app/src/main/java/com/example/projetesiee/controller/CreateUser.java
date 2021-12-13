@@ -85,16 +85,17 @@ public class CreateUser extends AppCompatActivity {
 
     boolean checkField(){
         boolean check = true;
+
         if(checkEmpty(mUserName)){
-            mUserName.setError("Required");
+            mUserName.setError(getString(R.string.required));
             check = false;
         }
         if(checkEmpty(mBirthday)){
-            mBirthday.setError("Required");
+            mBirthday.setError(getString(R.string.required));
             check = false;
         }
         if(dbOpenHelper.getUser(mUserName.getText().toString())!=null){
-            mUserName.setError("Name already taken");
+            mUserName.setError(getString(R.string.already_taken));
             check = false;
         }
         return check;
