@@ -27,11 +27,9 @@ public class TableauRecycleAdapter extends RecyclerView.Adapter<TableauRecycleAd
 
         }
 
-        public void setSize(int width,int height){
+        public void setSize(){
             imageView.getLayoutParams().width=QuestionTableauActivity.valWidth;
             imageView.getLayoutParams().height=QuestionTableauActivity.valHeight;
-            //layoutParams.setMargins(0, 0, 0, 0);
-            //imageView.setLayoutParams(layoutParams);
         }
 
         public ImageView getImageView() {
@@ -51,7 +49,7 @@ public class TableauRecycleAdapter extends RecyclerView.Adapter<TableauRecycleAd
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recycleview_stones_item, parent, false);
         TableauRecycleAdapter.ViewHolder adapter = new TableauRecycleAdapter.ViewHolder(view);
-        adapter.setSize(this.localDataSet.get(0).getWidth(),this.localDataSet.get(0).getHeight());
+        adapter.setSize();
         return adapter;
     }
 

@@ -39,7 +39,6 @@ public class QuestionTableauActivity extends QuestionActivity {
 
     public static float DensityOfApp;
 
-
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_tableau);
@@ -87,18 +86,6 @@ public class QuestionTableauActivity extends QuestionActivity {
             }
         }
         return bitmaps;
-    }
-    public int dpToPx(int dp) {
-        float density = this.getResources()
-                .getDisplayMetrics()
-                .density;
-        return Math.round((float) dp * density);
-    }
-    public int pxToDp(int px) {
-        float density = this.getResources()
-                .getDisplayMetrics()
-                .density;
-        return Math.round((float) px / density);
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -181,8 +168,7 @@ public class QuestionTableauActivity extends QuestionActivity {
 
             recyclerView.setAdapter(adapt);
 
-            //layoutManager.scrollToPosition(100000000+this.cadenas.startingPosition[i]);
-            layoutManager.scrollToPosition(100000000+i+1);
+            layoutManager.scrollToPosition(100000000+this.cadenas.startingPosition[i]);
         }
     }
 }

@@ -51,18 +51,18 @@ public class QuestionActivity extends AppCompatActivity {
 
     protected void startTimer(){
         startTime = Long.parseLong(getIntent().getStringExtra(UtilGame.KEY_CURRENT_TIME));
+        currentTime=(int)startTime;
         beginTimer();
     }
 
     private void beginTimer() {
-        currentTime=(int)startTime;
         minuteur = new Timer();
         TimerTask taskTime = new TimerTask() {@Override public void run() {
             runOnUiThread(new Runnable() { @Override public void run() {
                 runInTimer();
             } });
         }};
-        minuteur.scheduleAtFixedRate(taskTime,startTime,delay);
+        minuteur.scheduleAtFixedRate(taskTime,100,delay);
     }
 
 
@@ -93,7 +93,6 @@ public class QuestionActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (minuteur==null){
-            startTime=currentTime;
             beginTimer();
         }
     }
