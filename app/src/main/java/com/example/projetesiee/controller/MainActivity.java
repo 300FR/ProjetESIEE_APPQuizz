@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mSpinnerLangues.setAdapter(new ArrayAdapter<>(this,R.layout.spinner_item,langues));
-        String langueSave=langues[1];
+        String langueSave=Locale.getDefault().getDisplayLanguage();
         if (langueSave!=null) mSpinnerLangues.setSelection(getIndexLangue(langueSave));
 
         mSpinnerLangues.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
