@@ -1,7 +1,5 @@
 package com.example.projetesiee.controller;
 
-import static java.util.Collections.shuffle;
-
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
