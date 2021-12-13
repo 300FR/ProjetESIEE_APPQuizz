@@ -5,6 +5,7 @@ import static androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_IDLE;
 import static com.example.projetesiee.model.UtilGame.SEPARATOR;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -22,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.projetesiee.R;
 import com.example.projetesiee.model.Cadenas;
 import com.example.projetesiee.model.CadenasRecycleAdapter;
+import com.example.projetesiee.model.UtilGame;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -64,7 +66,7 @@ public class QuestionCadenasActivity extends QuestionActivity{
         this.indications.setText(indic);
 
 
-        this.cadenas= new Cadenas(new int[]{0,4,5,code_0});
+        this.cadenas= new Cadenas(new int[]{0,4,5,code_0},10);
 
         RecyclerView[] recyclerViews = {findViewById(R.id.cadenas_combinaison_1),
                 findViewById(R.id.cadenas_combinaison_2),
@@ -103,7 +105,9 @@ public class QuestionCadenasActivity extends QuestionActivity{
                                 switch (newState) {
                                     case SCROLL_STATE_IDLE:
                                         if (cadenas.setCode(index,pos%numbers.size())){
-                                            QuestionCadenasActivity.super.GoBackToMain(QuestionCadenasActivity.this);
+                                            Intent intent = new Intent(QuestionCadenasActivity.this, QuestionSuccessActivity.class);
+                                            intent.putExtra(UtilGame.KEY_CURRENT_TIME, "" + currentTime);
+                                            startActivity(intent);
                                         }
                                         recyclerView.removeOnScrollListener(this); break;
                                 }   }
@@ -133,7 +137,6 @@ public class QuestionCadenasActivity extends QuestionActivity{
             if (s.equals(":")) continue;
             if (i>=4) break;
             codeSecret[index++]=Integer.parseInt(s);
-            Log.d("eeeeeeeeeee",""+Integer.parseInt(s)+"\n");
         }
 
         this.cadenas.setCodeSecret(codeSecret);

@@ -44,9 +44,14 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="false" />
         <activity
+            android:name=".controller.QuestionSuccessActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:exported="false"/>
+        <activity
             android:name=".controller.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

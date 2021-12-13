@@ -17,8 +17,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.projetesiee.R;
 import com.example.projetesiee.model.DBOpenHelper;
 import com.example.projetesiee.model.LeaderboardRecycleAdapter;
+import com.example.projetesiee.model.UtilGame;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Set;
@@ -49,38 +51,32 @@ public class LeaderboardActivity extends AppCompatActivity {
             }
         });
 
-        /*
-
         dbOpenHelper = new DBOpenHelper(this);
-        HashMap<String,String > map = dbOpenHelper.getLeaderboard();
+        ArrayList<Object[]> list = dbOpenHelper.getLeaderboard();
+        ArrayList<String[]> dataSet= new ArrayList<>();
 
-        Set<String> keys = map.keySet();
-        ArrayList<String> l = (ArrayList<String>) keys;
+        Collections.sort(list, new Comparator<Object[]>() {
+            public int compare(Object[] o1, Object[] o2) {
+                Integer x=(int)o1[1];
+                Integer y=(int)o2[1];
+                return x.compareTo(y);
+            }
+        });
 
-        for (String key : map.keySet()){
-
-        }*/
-
-        ArrayList<String[]> dataSet = new  ArrayList<String[]>();
-        //dataSet.add(new String[]{"1","lddùù","00:34"});
-        dataSet.add(new String[]{"2","lGddùù","00:35"});
-        dataSet.add(new String[]{"3","lddGùù","00:36"});
-        dataSet.add(new String[]{"4","ldGdGùù","00:37"});
-        dataSet.add(new String[]{"5","lddùù","00:34"});
-        dataSet.add(new String[]{"6","lGddùù","00:35"});
-        dataSet.add(new String[]{"7","lddGùù","00:36"});
-        dataSet.add(new String[]{"8","ldGdGùù","00:37"});
-        dataSet.add(new String[]{"9","lddùù","00:34"});
-        dataSet.add(new String[]{"10","lGddùù","00:35"});
-        dataSet.add(new String[]{"11","lddGùù","00:36"});
-        dataSet.add(new String[]{"12","ldGdGùù","00:37"});
+        for (int i=1;i<list.size();i++){
+            int time=(int)list.get(i)[1];
+            String displayTime=UtilGame.displayTime(time);
+            if (time==0)  displayTime="";
+            dataSet.add(new String[]{""+(i+1),""+list.get(i)[0], displayTime});
+        }
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         this.recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(new LeaderboardRecycleAdapter(dataSet));
         layoutManager.scrollToPosition(0);
 
-        String[] tab = new String[]{"1","lddùù","00:34"};
+        String[] tab = new String[]{"1",""+list.get(0)[0], UtilGame.displayTime((int)list.get(0)[1])};
+
         View view = LayoutInflater.from(this.recyclerView.getContext())
                 .inflate(R.layout.recycleview_leaderboard_item, this.recyclerView, false);
         LeaderboardRecycleAdapter.ViewHolder firstHolder= new LeaderboardRecycleAdapter.ViewHolder(view);

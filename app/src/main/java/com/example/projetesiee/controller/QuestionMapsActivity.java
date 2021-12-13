@@ -74,7 +74,7 @@ public class QuestionMapsActivity extends QuestionActivity {
 
     private String getCountryNameToFind(){
         String[] list = new String[]{
-                "Portugal","Gabon","Espagne"
+                "Pologne","Gabon","Autriche","Cuba"
         };
         return list[new Random().nextInt(list.length)];
     }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Big QUIZ</string>
+    <string name="app_name">Culture+</string>
     <string name="your_name">Votre nom:</string>
     <string name="your_score_main">Votre meilleur score:</string>
     <string name="your_profile">Profile</string>
@@ -15,42 +15,6 @@
     <string name="incorrect_message">Incorrect!</string>
     <string name="go">Jouer!</string>
     <string name="question_tableau">Complétez le tableau</string>
-
-    <string name="history_1_Q">	Qui est le premier président des Etats-Unis?</string>
-    <string name="history_1_A">	George Washington</string>
-    <string name="history_1_B">	John Adams</string>
-    <string name="history_1_C">Donald Trump</string>
-    <string name="history_1_D">James Madison</string>
-
-    <string name="history_2_Q">Quand l\'homme a t-il marché sur la Lune pour la première fois?</string>
-    <string name="history_2_A">1958</string>
-    <string name="history_2_B">1962</string>
-    <string name="history_2_C">1967</string>
-    <string name="history_2_D">1969</string>
-
-    <string name="history_3_Q">	Combien de femmes à eu Henri VII?</string>
-    <string name="history_3_A">7</string>
-    <string name="history_3_B">4</string>
-    <string name="history_3_C">2</string>
-    <string name="history_3_D">6</string>
-
-    <string name="history_4_Q">Combien d\'enfant à eu la reine Victoria?</string>
-    <string name="history_4_A">4</string>
-    <string name="history_4_B">6</string>
-    <string name="history_4_C">7</string>
-    <string name="history_4_D">9</string>
-
-    <string name="history_5_Q">A quelle date l\'Albanie est devenu un pays?</string>
-    <string name="history_5_A">1713</string>
-    <string name="history_5_B">1813</string>
-    <string name="history_5_C">1913</string>
-    <string name="history_5_D">2013</string>
-
-    <string name="history_6_Q">	Quel roi français était appellé \"Saint Louis\"?</string>
-    <string name="history_6_A">Louis 7</string>
-    <string name="history_6_B">Louis 9</string>
-    <string name="history_6_C">Louis 13</string>
-    <string name="history_6_D">Louis 14</string>
     <string name="Welcome">Bienvenue!</string>
     <string name="create_user">Nouveau profil</string>
     <string name="Welcome_back_name">Rebonjour %1$s.</string>

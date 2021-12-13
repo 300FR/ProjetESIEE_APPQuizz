@@ -131,7 +131,7 @@ public class QuestionTableauActivity extends QuestionActivity {
         for (int i=0;i<recyclerViews.length;i++){
             combinaison[i]=(i);
         }
-        this.cadenas= new Cadenas(combinaison);
+        this.cadenas= new Cadenas(combinaison,recyclerViews.length);
 
         for (int i=0;i<recyclerViews.length;i++) {
             final int index=i;
