@@ -49,7 +49,7 @@ public class QuestionCadenasActivity extends QuestionActivity{
         int choice = new Random().nextInt(2);
         if (code_0==-1 || choice==0){
             code_0= new Random().nextInt(10);;
-            indic+=getString(R.string.cadenas_eq,""+(2+code_0),""+(4+code_0),""+(3+code_0));
+            indic+=getString(R.string.cadenas_eq,""+(2+code_0),""+(4+code_0));
         }else{
             indic+=getString(R.string.cadenas_fil,text_0);
         }
